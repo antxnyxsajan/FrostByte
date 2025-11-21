@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>FrostByte CTF 2025</title>
+  <meta name="description" content="FrostByte CTF – 24-hour security hackathon at Rajagiri School of Engineering and Technology.">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
+  <!-- Global stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Header/Nav -->
+  <header class="site-header" role="banner">
+    <div class="container header-row">
+      <a class="brand" href="#home">
+        <span class="brand-icon">❄️</span> FrostByte
+      </a>
+      <nav class="main-nav" id="mainNav" role="navigation" aria-label="Main navigation">
+        <a href="#home" data-target="home" class="nav-link active">Home</a>
+        <a href="#mission" data-target="mission" class="nav-link">Mission</a>
+        <a href="#location" data-target="location" class="nav-link">Location</a>
+        <a href="#schedule" data-target="schedule" class="nav-link">Timeline</a>
+        <a href="#rules" data-target="rules" class="nav-link">Rules</a>
+        <a href="register.html" class="nav-link btn-nav">Register</a>
+      </nav>
+      <button id="menuToggle" class="menu-toggle" aria-label="Open menu" aria-expanded="false">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="section hero-section" id="home">
+    <div class="container hero-grid">
+      <div class="hero-left reveal">
+        <div class="badge">Dec 18 • 24 Hours</div>
+        <h1 class="gradient-text">Break the Ice.<br>Hack the System.</h1>
+        <p class="lead">Join the ultimate 24-hour Capture The Flag competition. Test your skills in cryptography, reverse engineering, and exploitation.</p>
+        
+        <div class="countdown-box">
+          <div id="countdown" class="countdown">Loading...</div>
+          <div class="count-label">Until Breach</div>
+        </div>
+
+        <div class="cta-row">
+          <a class="btn btn-primary" href="register.html">Register Team</a>
+          <a class="btn btn-outline" href="#mission">Read Briefing</a>
+        </div>
+      </div>
+      
+      <div class="hero-right reveal">
+        <div class="card hero-card">
+          <div class="card-icon">🛡️</div>
+          <h3>Security Clearance</h3>
+          <ul class="hero-list">
+            <li>Teams up to 3 Hackers</li>
+            <li>Jeopardy-style CTF</li>
+            <li>Dynamic Scoring</li>
+            <li>Top Team: ₹1,50,000 + Swag</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission/About Section -->
+  <section class="section" id="mission">
+    <div class="container">
+      <h2 class="section-title">Mission Brief</h2>
+      <div class="card-grid reveal">
+        <div class="card">
+          <h3>The Objective</h3>
+          <p>Find vulnerabilities, exploit them, and capture the "flags". Tracks include <strong>Web Exploitation</strong>, <strong>Cryptography</strong>, <strong>Forensics</strong>, and <strong>Reverse Engineering</strong>.</p>
+        </div>
+        <div class="card">
+          <h3>Who Can Join?</h3>
+          <p>Open to all students. Whether you are a script kiddie or a red team pro, there are challenges for every skill level. Mentors will be on-site.</p>
+        </div>
+        <div class="card">
+          <h3>The Loot</h3>
+          <p>Cash prizes for the top 3 teams, exclusive FrostByte hoodies, and direct interview opportunities with our cybersecurity partners.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Location Section -->
+  <section class="section bg-accent" id="location">
+    <div class="container">
+      <h2 class="section-title">Base of Operations</h2>
+      <div class="venue-wrapper reveal">
+        <div class="venue-info">
+          <div class="venue-label">Target Location</div>
+          <h3>Rajagiri School of Engineering & Technology</h3>
+          <p class="venue-address">Kakkanad, Kochi, Kerala 682039</p>
+          <p class="venue-note">Reporting Time: 08:00 AM at the Main Auditorium.</p>
+          <div class="venue-features">
+            <span>🚀 High-Speed Wi-Fi</span>
+            <span>🍕 Free Food</span>
+            <span>💤 Resting Zones</span>
+          </div>
+        </div>
+        <div class="venue-map-placeholder">
+          <!-- Simplified Map Visual -->
+          <div class="map-pin">
+            <div class="pin-pulse"></div>
+            📍
+          </div>
+          <span class="map-text">Coordinates: 10.00° N, 76.36° E</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Schedule Section -->
+  <section class="section" id="schedule">
+    <div class="container">
+      <h2 class="section-title">Operation Timeline</h2>
+      <div class="schedule-wrapper reveal">
+        <div class="schedule-item">
+          <div class="time">Dec 18 — 08:00</div>
+          <div class="event">Check-in & Setup @ RSET</div>
+        </div>
+        <div class="schedule-item">
+          <div class="time">Dec 18 — 10:00</div>
+          <div class="event highlight">CTF Begins (Servers Live)</div>
+        </div>
+        <div class="schedule-item">
+          <div class="time">Dec 18 — 14:00</div>
+          <div class="event">Mini-Workshop: Binary Exploitation</div>
+        </div>
+        <div class="schedule-item">
+          <div class="time">Dec 18 — 22:00</div>
+          <div class="event">Late Night Pizza Drop</div>
+        </div>
+        <div class="schedule-item">
+          <div class="time">Dec 19 — 10:00</div>
+          <div class="event highlight">CTF Ends (Hard Stop)</div>
+        </div>
+        <div class="schedule-item">
+          <div class="time">Dec 19 — 11:00</div>
+          <div class="event">Prize Distribution</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rules Section -->
+  <section class="section" id="rules">
+    <div class="container">
+      <h2 class="section-title">Rules of Engagement</h2>
+      <!-- Rules Grid Layout -->
+      <div class="rules-grid reveal">
+        <div class="rule-card">
+          <div class="rule-number">01</div>
+          <h3>General Conduct</h3>
+          <p>Be respectful to other participants and staff. Harassment of any kind will lead to immediate disqualification.</p>
+        </div>
+        <div class="rule-card">
+          <div class="rule-number">02</div>
+          <h3>Network Policy</h3>
+          <p>Do not attack the competition infrastructure, other teams, or the venue network. Attack only the designated targets.</p>
+        </div>
+        <div class="rule-card">
+          <div class="rule-number">03</div>
+          <h3>Flag Submission</h3>
+          <p>The flag format is <code>Frost{...}</code>. Flags must be submitted to the scoring server before the countdown ends.</p>
+        </div>
+        <div class="rule-card">
+          <div class="rule-number">04</div>
+          <h3>Fair Play</h3>
+          <p>Sharing flags or solutions with other teams is strictly prohibited. Play hard, but play fair.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact/Register Section -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="cta-box reveal">
+        <h2>Ready to Breach?</h2>
+        <p>Registration closes soon. Secure your team's spot at RSET.</p>
+        <div class="cta-links">
+          <a href="register.html" class="btn btn-primary">Register Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2025 FrostByte CTF. <span class="muted">Stay Frosty.</span></p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
