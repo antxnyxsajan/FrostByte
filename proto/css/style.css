@@ -20,18 +20,24 @@
 
 * { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
-
-body {
-  margin: 0;
-  font-family: 'Inter', sans-serif;
+html {
+  scroll-behavior: smooth;
   background-color: var(--bg-body);
   /* Cyber grid background */
-  background-image: 
+  background-image:
     linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
   background-size: 40px 40px;
   background-attachment: fixed;
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: transparent;
+  background-image: none;
+  min-height: 100%;
   color: var(--text-main);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -148,7 +154,7 @@ a { text-decoration: none; color: inherit; transition: var(--transition); }
 }
 
 /* --- Hero --- */
-.section { padding: 80px 0; }
+.section { padding: 80px 0; position: relative; z-index: 1; }
 .hero-section { padding: 100px 0 80px; min-height: 85vh; display: flex; align-items: center; }
 
 .hero-grid {
@@ -366,16 +372,36 @@ a { text-decoration: none; color: inherit; transition: var(--transition); }
 
 
 /* --- Countdown --- */
-.countdown-box { margin: 20px 0; display: inline-block; }
-.countdown {
-  font-family: 'Outfit', sans-serif;
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: var(--text-main);
-  font-variant-numeric: tabular-nums;
-  text-shadow: 0 0 20px rgba(255,255,255,0.1);
+.countdown-box {
+  margin: 20px 0;
+  display: inline-block;
+  background-color: #0d1117; /* Darker background for terminal look */
+  border: 1px solid var(--accent); /* Accent border */
+  padding: 15px 25px; /* More padding */
+  border-radius: 6px; /* Slightly rounded corners */
+  box-shadow: 0 0 10px rgba(34, 211, 238, 0.4); /* Subtle glow */
+  font-family: 'monospace', 'Outfit', sans-serif; /* Monospaced font */
+  letter-spacing: 1px; /* Increase letter spacing slightly */
+  position: relative; /* Keep relative for potential future additions */
+  overflow: hidden; /* Keep hidden if there's any overflow */
 }
-.count-label { font-size: 0.9rem; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; }
+.countdown {
+  font-family: 'monospace', 'Outfit', sans-serif; /* Monospaced font */
+  font-size: 2.8rem; /* Slightly larger */
+  font-weight: 700;
+  color: var(--accent); /* Use accent color for text */
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 0 8px rgba(34, 211, 238, 0.8); /* Slightly less intense glow */
+  text-rendering: optimizeSpeed; /* No anti-aliasing for pixelated look */
+}
+.count-label {
+  font-family: 'monospace', 'Inter', sans-serif; /* Monospaced font */
+  font-size: 0.95rem; /* Slightly larger */
+  color: var(--text-muted); /* Keep muted color */
+  text-transform: uppercase;
+  letter-spacing: 2px; /* More letter spacing */
+  margin-top: 5px; /* Add some space */
+}
 
 /* --- Schedule --- */
 .schedule-wrapper {
@@ -416,6 +442,8 @@ a { text-decoration: none; color: inherit; transition: var(--transition); }
   font-size: 0.9rem;
   border-top: 1px solid var(--border);
   background: #0f172a;
+  position: relative;
+  z-index: 1;
 }
 
 /* --- Animations --- */
@@ -501,3 +529,5 @@ a { text-decoration: none; color: inherit; transition: var(--transition); }
   font-family: 'Outfit';
   font-size: 1.3rem;
 }
+
+

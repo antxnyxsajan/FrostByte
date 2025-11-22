@@ -98,4 +98,88 @@ document.addEventListener('DOMContentLoaded', () => {
     update();
     setInterval(update, 1000);
   })();
+
+  // Simple JavaScript Snow Effect
+  const snowflakeCount = 500; // Increased density significantly
+  const snowflakes = [];
+
+  function createSnowflake() {
+    const snowflake = document.createElement('div'); // Still a div, but will contain text
+    snowflake.className = 'snowflake';
+    snowflake.innerHTML = '❄'; // Use Unicode snowflake character
+    document.body.appendChild(snowflake);
+
+    // Initial random properties
+    snowflake.style.position = 'fixed';
+    snowflake.style.zIndex = '0';
+    snowflake.style.pointerEvents = 'none';
+    snowflake.style.color = 'white'; // Color of the Unicode character
+    
+    // Size and basic shape
+    snowflake.size = Math.random() * 5 + 10; // Size between 10px and 15px for font-size
+    snowflake.style.fontSize = snowflake.size + 'px'; // Use fontSize for text character
+    // Remove width, height, and box-shadow styling, as character will define shape/size
+
+    snowflake.x = Math.random() * window.innerWidth;
+    snowflake.y = Math.random() * window.innerHeight; // Start anywhere on screen
+    snowflake.speed = Math.random() * 2 + 1; // Speed between 1 and 3
+    snowflake.opacity = Math.random() * 0.8 + 0.2; // Opacity between 0.2 and 1
+    snowflake.style.opacity = snowflake.opacity; // Opacity for the character
+    
+    snowflake.driftOffset = Math.random() * Math.PI * 2; // Random offset for drift
+    snowflake.driftAmplitude = Math.random() * 1 + 0.5; // Random amplitude for drift (0.5 to 1.5)
+
+    // Apply blur based on size for more realism (smaller = more blurred)
+    // Min size 10px, Max size 15px
+    // Blur range 0.5px to 3px, inversely proportional to size
+    snowflake.style.filter = `blur(${((15 - snowflake.size) / 5) * 2.5 + 0.5}px)`; // Blur 0.5 to 3px
+
+    snowflake.rotation = Math.random() * 360; // Initial random rotation
+    snowflake.rotationSpeed = Math.random() * 0.5 - 0.25; // Rotation speed between -0.25 and 0.25 deg/frame
+
+    snowflakes.push(snowflake);
+    return snowflake;
+  }
+
+  function animateSnowflakes() {
+    for (let i = 0; i < snowflakes.length; i++) {
+      const snowflake = snowflakes[i];
+      snowflake.y += snowflake.speed;
+      // More realistic horizontal drift with random amplitude and offset
+      snowflake.x += Math.sin(snowflake.y * 0.01 + snowflake.driftOffset) * (0.7 + snowflake.driftAmplitude); // Increased base drift
+
+      // Update rotation
+      snowflake.rotation += snowflake.rotationSpeed;
+
+      // Reset if off-screen
+      if (snowflake.y > window.innerHeight) {
+        snowflake.y = -snowflake.size;
+        snowflake.x = Math.random() * window.innerWidth;
+        // Re-randomize drift and rotation for continuity
+        snowflake.driftOffset = Math.random() * Math.PI * 2;
+        snowflake.driftAmplitude = Math.random() * 1 + 0.5;
+        snowflake.rotation = Math.random() * 360;
+        snowflake.rotationSpeed = Math.random() * 0.5 - 0.25;
+      }
+      // If it drifts too far left or right, bring it back
+      if (snowflake.x < -snowflake.size) {
+        snowflake.x = window.innerWidth;
+      } else if (snowflake.x > window.innerWidth + snowflake.size) {
+        snowflake.x = -snowflake.size;
+      }
+
+      snowflake.style.top = snowflake.y + 'px';
+      snowflake.style.left = snowflake.x + 'px';
+      snowflake.style.transform = `rotate(${snowflake.rotation}deg)`; // Apply rotation
+    }
+    requestAnimationFrame(animateSnowflakes);
+  }
+
+  // Create snowflakes
+  for (let i = 0; i < snowflakeCount; i++) {
+    createSnowflake();
+  }
+
+  // Start animation
+  animateSnowflakes();
 });
