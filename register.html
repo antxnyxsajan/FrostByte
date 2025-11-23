@@ -10,7 +10,9 @@
     <div class="section">
         <div class="register-card">
             <h2 class="section-title">Team Registration</h2>
-            <form class="register-form" action="#" method="post">
+
+            <!-- Added id="registerForm" for JS -->
+            <form id="registerForm" class="register-form" action="https://script.google.com/macros/s/AKfycbzNNY_tSj3QJKzEwzpW9lfSMntW9e2gLe3z0ZK0sDao3dlKXo71QEwUr4QhF0g0TCppoQ/exec" method="post">
 
                 <!-- Team Name -->
                 <div class="form-group">
@@ -124,9 +126,39 @@
                 <div class="form-group" style="margin-top: 30px;">
                     <button type="submit" class="btn btn-primary">Register Team</button>
                 </div>
-
             </form>
+
+            <!-- Success message div -->
+            <div id="message" style="margin-top:20px; color:green; font-weight:bold;"></div>
         </div>
     </div>
+
+    <!-- Minimal JS to show success message -->
+    <script>
+        const form = document.getElementById('registerForm');
+        const messageDiv = document.getElementById('message');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault(); // prevent default submission
+
+            const formData = new FormData(form);
+
+            fetch(form.action, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(text => {
+                messageDiv.textContent = "Registration Successful!";
+                messageDiv.style.color = "green";
+                form.reset(); // clear form after submission
+            })
+            .catch(error => {
+                messageDiv.textContent = "Error submitting the form. Please try again.";
+                messageDiv.style.color = "red";
+                console.error(error);
+            });
+        });
+    </script>
 </body>
 </html>
