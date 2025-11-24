@@ -100,7 +100,8 @@ document.addEventListener('DOMContentLoaded', () => {
   })();
 
   // Simple JavaScript Snow Effect
-  const snowflakeCount = 500; // Increased density significantly
+  const isMobile = window.innerWidth<768;
+  const snowflakeCount = isMobile?100:500;
   const snowflakes = [];
 
   function createSnowflake() {
@@ -122,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     snowflake.x = Math.random() * window.innerWidth;
     snowflake.y = Math.random() * window.innerHeight; // Start anywhere on screen
-    snowflake.speed = Math.random() * 2 + 1; // Speed between 1 and 3
+    snowflake.speed = Math.random() * 1 + 0.5; // Speed between 0.5 and 1.5
     snowflake.opacity = Math.random() * 0.8 + 0.2; // Opacity between 0.2 and 1
     snowflake.style.opacity = snowflake.opacity; // Opacity for the character
     
