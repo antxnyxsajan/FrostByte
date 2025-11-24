@@ -50,15 +50,15 @@ document.addEventListener('DOMContentLoaded', () => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         const id = entry.target.id;
-        navLinks.forEach(link => {
-          link.classList.remove('active');
-          if (link.getAttribute('data-target') === id) {
-            link.classList.add('active');
-          }
-        });
+        const matchingLink = document.querySelector(`.nav-link[data-target="${id}"]`);
+        if (matchingLink) {
+          navLinks.forEach(link => link.classList.remove('active'));
+          matchingLink.classList.add('active');
+        }
       }
     });
   }, { root: null, threshold: 0.3 });
+  
   sections.forEach(s => sectionObserver.observe(s));
 
   // Scroll Reveal Animation

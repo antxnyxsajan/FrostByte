@@ -43,10 +43,41 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3, .brand {
+h1, h2, h3{
   font-family: 'Outfit', sans-serif;
   font-weight: 700;
   margin-top: 0;
+}
+
+.brand {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  letter-spacing: -1px;
+  font-size: 1.6rem;
+}
+
+.cyber-glitch {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 5rem; /* Very Big */
+  font-weight: 800;
+  margin: 0 0 10px 0;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 2px var(--accent); /* Outline style */
+  position: relative;
+  display: inline-block;
+  text-shadow: 0 0 20px rgba(34, 211, 238, 0.4);
+}
+.cyber-glitch::after {
+  content: '_';
+  color: var(--accent);
+  animation: blink 1s infinite;
+  margin-left: 5px;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }
 
 h2.section-title {
@@ -155,7 +186,7 @@ a { text-decoration: none; color: inherit; transition: var(--transition); }
 
 /* --- Hero --- */
 .section { padding: 80px 0; position: relative; z-index: 1; }
-.hero-section { padding: 100px 0 80px; min-height: 85vh; display: flex; align-items: center; }
+.hero-section { padding: 70px 0 80px; min-height: 85vh; display: flex; align-items: center; }
 
 .hero-grid {
   display: grid;
@@ -180,12 +211,21 @@ a { text-decoration: none; color: inherit; transition: var(--transition); }
 }
 
 .gradient-text {
-  font-size: 4rem;
+  font-size: 3rem;
   line-height: 1.1;
   margin-bottom: 20px;
   background: linear-gradient(135deg, #fff 0%, #94a3b8 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+@media (max-width: 768px) {
+  .cyber-glitch {
+    font-size: 3.2rem; 
+  }
+  .gradient-text {
+    font-size: 2rem;
+  }
 }
 
 .lead {
@@ -530,4 +570,128 @@ a { text-decoration: none; color: inherit; transition: var(--transition); }
   font-size: 1.3rem;
 }
 
+/* --- Premium Sponsors 1-2-2 Layout --- */
+.sponsors-wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 40px; /* Vertical gap between rows */
+}
 
+.split-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Equal split */
+  gap: 40px; /* Horizontal gap */
+}
+
+/* --- Unified Card Style --- */
+.sponsor-card {
+  display: flex; /* Row layout: Badge Left | Content Right */
+  align-items: stretch; /* Make badge stretch full height */
+  background: linear-gradient(145deg, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.9));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px; /* Rounded edges */
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy transition */
+  backdrop-filter: blur(12px);
+  min-height: 200px; /* Tall enough for big logos */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Hover Animation */
+.sponsor-card:hover {
+  transform: translateY(-10px); /* Lift up */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  background: linear-gradient(145deg, rgba(40, 50, 70, 0.7), rgba(20, 30, 50, 0.95));
+}
+
+/* Badge (Left Side Block) */
+.tier-badge {
+  width: 140px; /* Fixed width for badge */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 20px;
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  flex-shrink: 0; /* Prevent shrinking */
+}
+
+/* Content (Right Side Logo Area) */
+.sponsor-content {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.sponsor-content h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #fff;
+  opacity: 0.9;
+}
+
+/* --- Tier Specific Colors --- */
+
+/* 1. Title (Purple/Primary) */
+.tier-title {
+  border: 2px solid var(--primary); /* Thicker border */
+  box-shadow: 0 0 40px rgba(99, 102, 241, 0.2);
+  min-height: 220px; /* Title is slightly taller */
+}
+.tier-title .tier-badge {
+  background: var(--primary);
+  color: #fff;
+}
+.tier-title:hover {
+  box-shadow: 0 0 60px rgba(99, 102, 241, 0.4);
+}
+
+/* 2. Platinum (Cyan) */
+.tier-platinum { border-left: 6px solid var(--accent); }
+.tier-platinum .tier-badge { background: rgba(34, 211, 238, 0.1); color: var(--accent); }
+.tier-platinum:hover { box-shadow: 0 0 30px rgba(34, 211, 238, 0.15); }
+
+/* 3. Gold (Yellow) */
+.tier-gold { border-left: 6px solid #ffd700; }
+.tier-gold .tier-badge { background: rgba(255, 215, 0, 0.1); color: #ffd700; }
+.tier-gold:hover { box-shadow: 0 0 30px rgba(255, 215, 0, 0.15); }
+
+/* 4. Silver (Grey) */
+.tier-silver { border-left: 6px solid #c0c0c0; }
+.tier-silver .tier-badge { background: rgba(192, 192, 192, 0.1); color: #e0e0e0; }
+
+/* 5. Associate (Slate) */
+.tier-associate { border-left: 6px solid #64748b; }
+.tier-associate .tier-badge { background: rgba(100, 116, 139, 0.1); color: #94a3b8; }
+
+/* --- Mobile Adjustments --- */
+@media (max-width: 768px) {
+  .split-row {
+    grid-template-columns: 1fr; /* Stack vertically on mobile */
+    gap: 30px;
+  }
+  
+  .sponsor-card {
+    flex-direction: column; /* Badge on Top, Logo below */
+    min-height: auto; 
+    text-align: center;
+  }
+
+  .tier-badge {
+    width: 100%; /* Full width badge */
+    height: 50px;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .sponsor-content { padding: 40px 20px; }
+}

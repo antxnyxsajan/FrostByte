@@ -8,7 +8,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@700;800&family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet">
   <!-- Global stylesheet -->
   <link rel="stylesheet" href="css/style.css">
   <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
@@ -28,6 +28,7 @@
         <a href="#location" data-target="location" class="nav-link">Location</a>
         <a href="#schedule" data-target="schedule" class="nav-link">Timeline</a>
         <a href="#rules" data-target="rules" class="nav-link">Rules</a>
+        <a href="#sponsors" data-target="sponsors" class="nav-link">Sponsors</a>
         <a href="register.html" class="nav-link btn-nav">Register</a>
       </nav>
       <button id="menuToggle" class="menu-toggle" aria-label="Open menu" aria-expanded="false">
@@ -40,43 +41,40 @@
 
   <!-- Hero Section -->
   <section class="section hero-section" id="home">
-    <div class="container hero-grid">
-      <div class="hero-left reveal">
-        <div class="badge">Dec 18 • 24 Hours</div>
-        <h1 class="gradient-text">Break the Ice.<br>Hack the System.</h1>
-        <p class="lead">Join the ultimate 24-hour Capture The Flag competition. Test your skills in cryptography, reverse engineering, and exploitation.</p>
-        <div class="countdown-box">
-          <div id="countdown" class="countdown">Loading...</div>
-          <div class="count-label">Until Breach</div>
-        </div>
+  <div class="container hero-grid">
+    <div class="hero-left reveal">
+      
+      <h1 class="cyber-glitch">FrostByte_</h1>
 
-        <div class="cta-row">
-          <a class="btn btn-primary" href="register.html">Register Team</a>
-          <a class="btn btn-outline" href="#mission">Read Briefing</a>
-        </div>
+      <div class="badge">Dec 18 • 24 Hours</div>
+      
+      <h2 class="gradient-text">Break the Ice.<br>Hack the System.</h2>
+      
+      <p class="lead">Join the ultimate 24-hour Capture The Flag competition. Test your skills in cryptography, reverse engineering, and exploitation.</p>
+      
+      <div class="countdown-box">
+        <div id="countdown" class="countdown">Loading...</div>
+        <div class="count-label">Until Breach</div>
       </div>
-      <div class="hero-right reveal">
-        <!--<div class="card hero-card">
-          <div class="card-icon">🛡️</div>
-          <h3>Security Clearance</h3>
-          <ul class="hero-list">
-            <li>Teams up to 3 Hackers</li>
-            <li>Jeopardy-style CTF</li>
-            <li>Dynamic Scoring</li>
-            <li>Top Team: ₹1,50,000 + Swag</li>
-          </ul>
-        </div>-->
-        <dotlottie-player
-          src="assets/Lotties/hero1.lottie"
-          background="transparent"
-          speed="1"
-          style="width: 100%; height: 500px;"
-          loop
-          autoplay>
-        </dotlottie-player>
+
+      <div class="cta-row">
+        <a class="btn btn-primary" href="register.html">Register Team</a>
+        <a class="btn btn-outline" href="#mission">Read Briefing</a>
       </div>
     </div>
-  </section>
+    
+    <div class="hero-right reveal">
+      <dotlottie-player
+        src="assets/Lotties/hero1.lottie"
+        background="transparent"
+        speed="1"
+        style="width: 100%; height: 500px;"
+        loop
+        autoplay>
+      </dotlottie-player>
+    </div>
+  </div>
+</section>
 
   <!-- Mission/About Section -->
   <section class="section" id="mission">
@@ -186,6 +184,55 @@
           <h3>Fair Play</h3>
           <p>Sharing flags or solutions with other teams is strictly prohibited. Play hard, but play fair.</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!--Sponsors Section-->
+  <section class="section" id="sponsors">
+    <div class="container">
+      <h2 class="section-title">Network Allies</h2>
+      <div class="sponsors-wrapper reveal">
+
+        <div class="sponsor-card tier-title">
+          <div class="tier-badge">Title Sponsor</div>
+          <div class="sponsor-content">
+            <h3>Title Sponsor</h3>
+          </div>
+        </div>
+
+        <div class="split-row">
+          <div class="sponsor-card tier-platinum">
+            <div class="tier-badge">Platinum Sponsor</div>
+            <div class="sponsor-content">
+            <h3>Platinum Sponsor</h3>
+            </div>
+          </div>
+
+          <div class="sponsor-card tier-gold">
+            <div class="tier-badge">Gold Sponsor</div>
+            <div class="sponsor-content">
+              <h3>Gold Sponsor</h3>
+            </div>
+          </div>
+        </div>
+        
+        <div class="split-row">
+          <div class="sponsor-card tier-silver">
+            <div class="tier-badge">Platinum Sponsor</div>
+            <div class="sponsor-content">
+            <h3>Siliver Sponsor</h3>
+            </div>
+          </div>
+
+          <div class="sponsor-card tier-associate">
+            <div class="tier-badge">Associate Partner</div>
+            <div class="sponsor-content">
+              <h3>Associate Partner</h3>
+            </div>
+          </div>
+        </div>
+      
       </div>
     </div>
   </section>
