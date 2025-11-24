@@ -99,88 +99,83 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(update, 1000);
   })();
 
-  // Simple JavaScript Snow Effect
-  const isMobile = window.innerWidth<768;
-  const snowflakeCount = isMobile?100:500;
-  const snowflakes = [];
+  // Optimized Canvas Snow Effect
+  const canvas = document.getElementById('snow-canvas');
+  if (canvas) {
+    const ctx = canvas.getContext('2d');
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+    canvas.width = width;
+    canvas.height = height;
 
-  function createSnowflake() {
-    const snowflake = document.createElement('div'); // Still a div, but will contain text
-    snowflake.className = 'snowflake';
-    snowflake.innerHTML = '❄'; // Use Unicode snowflake character
-    document.body.appendChild(snowflake);
+    const isMobile = width < 768;
+    const snowflakeCount = isMobile ? 100 : 300;
+    const snowflakes = [];
 
-    // Initial random properties
-    snowflake.style.position = 'fixed';
-    snowflake.style.zIndex = '0';
-    snowflake.style.pointerEvents = 'none';
-    snowflake.style.color = 'white'; // Color of the Unicode character
-    
-    // Size and basic shape
-    snowflake.size = Math.random() * 5 + 10; // Size between 10px and 15px for font-size
-    snowflake.style.fontSize = snowflake.size + 'px'; // Use fontSize for text character
-    // Remove width, height, and box-shadow styling, as character will define shape/size
-
-    snowflake.x = Math.random() * window.innerWidth;
-    snowflake.y = Math.random() * window.innerHeight; // Start anywhere on screen
-    snowflake.speed = Math.random() * 1 + 0.5; // Speed between 0.5 and 1.5
-    snowflake.opacity = Math.random() * 0.8 + 0.2; // Opacity between 0.2 and 1
-    snowflake.style.opacity = snowflake.opacity; // Opacity for the character
-    
-    snowflake.driftOffset = Math.random() * Math.PI * 2; // Random offset for drift
-    snowflake.driftAmplitude = Math.random() * 1 + 0.5; // Random amplitude for drift (0.5 to 1.5)
-
-    // Apply blur based on size for more realism (smaller = more blurred)
-    // Min size 10px, Max size 15px
-    // Blur range 0.5px to 3px, inversely proportional to size
-    snowflake.style.filter = `blur(${((15 - snowflake.size) / 5) * 2.5 + 0.5}px)`; // Blur 0.5 to 3px
-
-    snowflake.rotation = Math.random() * 360; // Initial random rotation
-    snowflake.rotationSpeed = Math.random() * 0.5 - 0.25; // Rotation speed between -0.25 and 0.25 deg/frame
-
-    snowflakes.push(snowflake);
-    return snowflake;
-  }
-
-  function animateSnowflakes() {
-    for (let i = 0; i < snowflakes.length; i++) {
-      const snowflake = snowflakes[i];
-      snowflake.y += snowflake.speed;
-      // More realistic horizontal drift with random amplitude and offset
-      snowflake.x += Math.sin(snowflake.y * 0.01 + snowflake.driftOffset) * (0.7 + snowflake.driftAmplitude); // Increased base drift
-
-      // Update rotation
-      snowflake.rotation += snowflake.rotationSpeed;
-
-      // Reset if off-screen
-      if (snowflake.y > window.innerHeight) {
-        snowflake.y = -snowflake.size;
-        snowflake.x = Math.random() * window.innerWidth;
-        // Re-randomize drift and rotation for continuity
-        snowflake.driftOffset = Math.random() * Math.PI * 2;
-        snowflake.driftAmplitude = Math.random() * 1 + 0.5;
-        snowflake.rotation = Math.random() * 360;
-        snowflake.rotationSpeed = Math.random() * 0.5 - 0.25;
+    function createSnowflakes() {
+      for (let i = 0; i < snowflakeCount; i++) {
+        snowflakes.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          radius: Math.random() * (isMobile ? 3 : 4) + 1, // used for font size
+          density: Math.random() * 10, // used for sine wave offset
+          speed: Math.random() * (isMobile ? 1 : 1.5) + 0.5,
+          opacity: Math.random() * 0.5 + 0.5,
+          drift: Math.random() * (isMobile ? 0.5 : 1) + 0.5,
+        });
       }
-      // If it drifts too far left or right, bring it back
-      if (snowflake.x < -snowflake.size) {
-        snowflake.x = window.innerWidth;
-      } else if (snowflake.x > window.innerWidth + snowflake.size) {
-        snowflake.x = -snowflake.size;
-      }
-
-      snowflake.style.top = snowflake.y + 'px';
-      snowflake.style.left = snowflake.x + 'px';
-      snowflake.style.transform = `rotate(${snowflake.rotation}deg)`; // Apply rotation
     }
-    requestAnimationFrame(animateSnowflakes);
-  }
 
-  // Create snowflakes
-  for (let i = 0; i < snowflakeCount; i++) {
-    createSnowflake();
-  }
+    function drawSnowflakes() {
+      ctx.clearRect(0, 0, width, height);
+      for (let i = 0; i < snowflakes.length; i++) {
+        const snowflake = snowflakes[i];
+        ctx.font = `${snowflake.radius * 3}px serif`; // Scale font size based on radius
+        ctx.fillStyle = `rgba(255, 255, 255, ${snowflake.opacity})`; // Use random opacity
+        ctx.fillText('❄', snowflake.x, snowflake.y);
+      }
+      updateSnowflakes();
+    }
 
-  // Start animation
-  animateSnowflakes();
+    let angle = 0;
+    function updateSnowflakes() {
+      angle += 0.01;
+      for (let i = 0; i < snowflakes.length; i++) {
+        const snowflake = snowflakes[i];
+        // Update position
+        snowflake.y += Math.pow(snowflake.radius, 0.5) * snowflake.speed;
+        snowflake.x += Math.sin(angle + snowflake.density) * snowflake.drift;
+
+        // Reset if off-screen
+        if (snowflake.y > height) {
+          snowflakes[i] = {
+            x: Math.random() * width,
+            y: -10,
+            radius: Math.random() * (isMobile ? 2 : 3) + 1,
+            density: Math.random() * 10,
+            speed: Math.random() * (isMobile ? 0.5 : 1) + 0.5,
+            opacity: Math.random() * 0.5 + 0.5,
+            drift: Math.random() * (isMobile ? 0.5 : 1) + 0.5,
+          };
+        }
+      }
+    }
+
+    function animate() {
+      drawSnowflakes();
+      requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('resize', () => {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+      snowflakes.length = 0;
+      createSnowflakes();
+    });
+
+    createSnowflakes();
+    animate();
+  }
 });
