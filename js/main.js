@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
         snowflakes.push({
           x: Math.random() * width,
           y: Math.random() * height,
-          radius: Math.random() * (isMobile ? 3 : 4) + 1, // used for font size
+          radius: Math.random() * (isMobile ? 6 : 8) + 1, // used for font size
           density: Math.random() * 10, // used for sine wave offset
           speed: Math.random() * (isMobile ? 1 : 1.5) + 0.5,
           opacity: Math.random() * 0.5 + 0.5,
@@ -151,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
           snowflakes[i] = {
             x: Math.random() * width,
             y: -10,
-            radius: Math.random() * (isMobile ? 2 : 3) + 1,
+            radius: Math.random() * (isMobile ? 3 : 5) + 1,
             density: Math.random() * 10,
             speed: Math.random() * (isMobile ? 0.5 : 1) + 0.5,
             opacity: Math.random() * 0.5 + 0.5,
