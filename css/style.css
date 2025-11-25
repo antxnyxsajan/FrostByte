@@ -729,23 +729,54 @@ a { text-decoration: none; color: inherit; transition: var(--transition); }
   width: 50%;
   height: 100%;
   background-color: #000000; /* Black color for the curtain */
-  transition: transform 2s ease-in-out; /* Slower, more dramatic transition */
+  transform-origin: bottom; /* Crucial for scaling from the bottom */
 }
 
 .curtain-panel.left {
   left: 0;
-  transform: translateX(0);
+  /* Initial state is handled by the keyframe animation */
 }
 
 .curtain-panel.right {
   right: 0;
-  transform: translateX(0);
+  /* Initial state is handled by the keyframe animation */
 }
 
 #curtain-overlay.open .curtain-panel.left {
-  transform: translateX(-100%);
+  animation: openCurtainLeft 2.5s forwards ease-in-out;
 }
 
 #curtain-overlay.open .curtain-panel.right {
-  transform: translateX(100%);
+  animation: openCurtainRight 2.5s forwards ease-in-out;
+}
+
+/* Keyframes for the "bottom opens first" effect */
+@keyframes openCurtainLeft {
+  0% {
+    transform: scaleY(1) translateX(0); /* Start fully closed */
+  }
+  20% {
+    transform: scaleY(0.95) translateX(0); /* Bottom compresses slightly */
+  }
+  60% {
+    transform: scaleY(0.95) translateX(-100%); /* Maintain compression, start sliding left */
+  }
+  100% {
+    transform: scaleY(0) translateX(-100%); /* Fully slide left and disappear (scaleY to 0) */
+  }
+}
+
+@keyframes openCurtainRight {
+  0% {
+    transform: scaleY(1) translateX(0); /* Start fully closed */
+  }
+  20% {
+    transform: scaleY(0.95) translateX(0); /* Bottom compresses slightly */
+  }
+  60% {
+    transform: scaleY(0.95) translateX(100%); /* Maintain compression, start sliding right */
+  }
+  100% {
+    transform: scaleY(0) translateX(100%); /* Fully slide right and disappear (scaleY to 0) */
+  }
 }
