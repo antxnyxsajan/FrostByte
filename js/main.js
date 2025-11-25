@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
     canvas.height = height;
 
     const isMobile = width < 768;
-    const snowflakeCount = isMobile ? 100 : 300;
+    const snowflakeCount = isMobile ? 50 : 200;
     const snowflakes = [];
 
     function createSnowflakes() {
@@ -117,11 +117,11 @@ document.addEventListener('DOMContentLoaded', () => {
         snowflakes.push({
           x: Math.random() * width,
           y: Math.random() * height,
-          radius: Math.random() * (isMobile ? 6 : 8) + 1, // used for font size
+          radius: Math.random() * (isMobile ? 4 : 8) + 1, // used for font size
           density: Math.random() * 10, // used for sine wave offset
-          speed: Math.random() * (isMobile ? 1 : 1.5) + 0.5,
+          speed: Math.random() * (isMobile ? 0.8 : 1.5) + 0.2,
           opacity: Math.random() * 0.5 + 0.5,
-          drift: Math.random() * (isMobile ? 0.5 : 1) + 0.5,
+          drift: Math.random() * (isMobile ? 0.3 : 1) + 0.2,
         });
       }
     }
@@ -151,11 +151,11 @@ document.addEventListener('DOMContentLoaded', () => {
           snowflakes[i] = {
             x: Math.random() * width,
             y: -10,
-            radius: Math.random() * (isMobile ? 3 : 5) + 1,
+            radius: Math.random() * (isMobile ? 2 : 5) + 1,
             density: Math.random() * 10,
-            speed: Math.random() * (isMobile ? 0.5 : 1) + 0.5,
+            speed: Math.random() * (isMobile ? 0.8 : 1.5) + 0.2,
             opacity: Math.random() * 0.5 + 0.5,
-            drift: Math.random() * (isMobile ? 0.5 : 1) + 0.5,
+            drift: Math.random() * (isMobile ? 0.3 : 1) + 0.2,
           };
         }
       }
