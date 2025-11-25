@@ -716,132 +716,29 @@ a { text-decoration: none; color: inherit; transition: var(--transition); }
   left: 0;
   width: 100%;
   height: 100%;
+  background-color: #000;
   z-index: 9999;
-  overflow: hidden; /* Hide the content until curtains open */
+  transition: opacity 1s ease-in-out;
+}
+/* Snow Pile Effect */
+.snow-pile {
+  position: relative;
 }
 
-.curtain-panel {
-  position: absolute;
-  top: 0;
-  width: 50.5%; /* Overlap slightly in the middle */
-  height: 100%;
-  background-image: linear-gradient(to right, #1a1a1a, #2a2a2a);
-  transition: transform 2s cubic-bezier(0.86, 0, 0.07, 1);
-  box-shadow: 5px 0 15px rgba(0,0,0,0.5);
-}
-
-.curtain-panel::before {
+.snow-pile::after {
   content: '';
   position: absolute;
   top: 0;
-  height: 100%;
-  width: 50px;
-  background: linear-gradient(to right, rgba(0,0,0,0.3), transparent);
-  opacity: 0;
-  transition: opacity 0.5s;
-}
-
-.curtain-panel.left::before {
-  right: 0;
-}
-
-.curtain-panel.right::before {
   left: 0;
-  transform: rotate(180deg);
-}
-
-#loader-overlay.open .curtain-panel::before {
-  opacity: 1;
-}
-
-.curtain-panel.left {
-  left: 0;
-}
-
-.curtain-panel.right {
-  right: 0;
-}
-
-#loader-overlay.open .curtain-panel.left {
-  transform: translateX(-100%);
-}
-
-#loader-overlay.open .curtain-panel.right {
-  transform: translateX(100%);
-}
-
-#light-fixture-container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  z-index: 10000; /* Ensure it's above the curtains */
-  transition: opacity 0.5s ease-in-out;
-}
-
-#loader-overlay.open #light-fixture-container {
-  opacity: 0;
-  pointer-events: none;
-}
-
-#light-fixture {
-  position: relative;
-  top: 0;
-  width: 150px; /* Wider fixture */
-  height: 40px; /* Shorter fixture */
-  background: linear-gradient(to bottom, #e0e0e0, #f5f5f5); /* Gradient for depth */
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  border-bottom: 2px solid #bdbdbd; /* Bottom border for definition */
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-  margin-top: 0; /* remove the negative margin */
-}
-
-#light-bulb {
-  position: absolute;
-  bottom: -50px; /* Lower the bulb */
-  left: 50%;
-  transform: translateX(-50%);
-  width: 50px; /* Larger bulb */
-  height: 50px;
-  background: radial-gradient(circle, #ffffff, #f0f0f0);
-  border-radius: 50%;
-  box-shadow: 0 5px 25px 5px rgba(255, 255, 255, 0.7); /* More prominent glow */
-}
-
-#light-string {
-  position: absolute;
-  bottom: -200px; /* Longer string */
-  left: 50%;
-  transform: translateX(-50%);
-  width: 6px; /* Thicker string */
-  height: 150px; /* Longer string */
-  background-image:
-    radial-gradient(circle at center, #dcdcdc 2px, transparent 2px),
-    linear-gradient(to bottom, #888888, #888888);
-  background-size: 6px 12px, 1px 12px;
-  background-repeat: repeat-y, repeat-y;
-  background-position: center, center;
-  cursor: pointer;
-  transition: transform 0.1s;
-}
-
-#light-string:hover {
-  transform: translateY(5px);
-}
-
-
-#loader-text {
-  color: #fff;
-  margin-top: 150px; /* Adjust margin to position it below the light */
-  font-family: 'Outfit', sans-serif; /* Cleaner font */
-  font-size: 5vw; /* Responsive font size */
-  font-weight: 700;
-  text-align: center;
   width: 100%;
-  letter-spacing: 2px;
-  text-shadow: 0 0 10px rgba(255,255,255,0.3);
+  height: 10px; /* Adjust as needed */
+  border-radius: 50%;
+  box-shadow:
+    0 2px 2px 0 rgba(255, 255, 255, 0.8),
+    0 4px 4px 0 rgba(255, 255, 255, 0.7),
+    0 6px 6px 0 rgba(255, 255, 255, 0.6),
+    0 8px 8px 0 rgba(255, 255, 255, 0.5),
+    0 10px 10px 0 rgba(255, 255, 255, 0.4);
+  transform: translateY(-50%);
+  z-index: 10;
 }

@@ -12,7 +12,9 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div class="snow-container"></div>
+    <div class="snow-container">
+    <canvas id="snow-canvas"></canvas>
+  </div>
 
     <header class="site-header" role="banner">
         <div class="container header-row">
@@ -166,43 +168,6 @@
 
     <script src="js/main.js"></script>
 
-    <script>
-        const form = document.getElementById('registerForm');
-        const messageDiv = document.getElementById('message');
-
-        form.addEventListener('submit', function(e) {
-            e.preventDefault(); // Prevent default HTML form submission
-
-            // Visual feedback that something is happening
-            const btn = form.querySelector('button[type="submit"]');
-            const originalText = btn.textContent;
-            btn.textContent = "Transmitting Data...";
-            btn.disabled = true;
-            messageDiv.textContent = "";
-
-            const formData = new FormData(form);
-
-            fetch(form.action, {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.text())
-            .then(text => {
-                messageDiv.textContent = "Registration Successful! Welcome to the system.";
-                messageDiv.style.color = "#22d3ee"; // Cyan accent color
-                form.reset();
-            })
-            .catch(error => {
-                messageDiv.textContent = "Connection Error. Please try again.";
-                messageDiv.style.color = "#ef4444"; // Red error color
-                console.error(error);
-            })
-            .finally(() => {
-                // Restore button state
-                btn.textContent = originalText;
-                btn.disabled = false;
-            });
-        });
-    </script>
+    
 </body>
 </html>

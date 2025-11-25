@@ -14,17 +14,7 @@
   <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
 </head>
 <body>
-  <div id="loader-overlay">
-    <div class="curtain-panel left"></div>
-    <div class="curtain-panel right"></div>
-    <div id="light-fixture-container">
-      <div id="light-fixture">
-        <div id="light-bulb"></div>
-        <div id="light-string"></div>
-      </div>
-      <p id="loader-text">pull the light string</p>
-    </div>
-  </div>
+  <div id="loader-overlay"></div>
   <div class="snow-container">
     <canvas id="snow-canvas"></canvas>
   </div>
@@ -57,7 +47,7 @@
   <div class="container hero-grid">
     <div class="hero-left reveal">
       
-      <h1 class="cyber-glitch">FrostByte_</h1>
+      <h1 class="cyber-glitch snow-pile">FrostByte_</h1>
 
       <div class="badge">Dec 18 • 24 Hours</div>
       
@@ -65,14 +55,14 @@
       
       <p class="lead">Join the ultimate 24-hour Capture The Flag competition. Test your skills in cryptography, reverse engineering, and exploitation.</p>
       
-      <div class="countdown-box">
+      <div class="countdown-box snow-pile">
         <div id="countdown" class="countdown">Loading...</div>
         <div class="count-label">Until Breach</div>
       </div>
 
       <div class="cta-row">
-        <a class="btn btn-primary" href="register.html">Register Team</a>
-        <a class="btn btn-outline" href="#mission">Read Briefing</a>
+        <a class="btn snow-pile btn-primary" href="register.html">Register Team</a>
+        <a class="btn snow-pile btn-outline" href="#mission">Read Briefing</a>
       </div>
     </div>
     
@@ -92,17 +82,17 @@
   <!-- Mission/About Section -->
   <section class="section" id="mission">
     <div class="container">
-      <h2 class="section-title">Mission Brief</h2>
+      <h2 class="section-title snow-pile">Mission Brief</h2>
       <div class="card-grid reveal">
-        <div class="card">
+        <div class="card snow-pile">
           <h3>The Objective</h3>
           <p>Find vulnerabilities, exploit them, and capture the "flags". Tracks include <strong>Web Exploitation</strong>, <strong>Cryptography</strong>, <strong>Forensics</strong>, and <strong>Reverse Engineering</strong>.</p>
         </div>
-        <div class="card">
+        <div class="card snow-pile">
           <h3>Who Can Join?</h3>
           <p>Open to all students. Whether you are a script kiddie or a red team pro, there are challenges for every skill level. Mentors will be on-site.</p>
         </div>
-        <div class="card">
+        <div class="card snow-pile">
           <h3>The Loot</h3>
           <p>Cash prizes for the top 3 teams, exclusive FrostByte hoodies, and direct interview opportunities with our cybersecurity partners.</p>
         </div>
@@ -113,7 +103,7 @@
   <!-- Location Section -->
   <section class="section bg-accent" id="location">
     <div class="container">
-      <h2 class="section-title">Base of Operations</h2>
+      <h2 class="section-title snow-pile">Base of Operations</h2>
       <div class="venue-wrapper reveal">
         <div class="venue-info">
           <div class="venue-label">Target Location</div>
@@ -141,29 +131,29 @@
   <!-- Schedule Section -->
   <section class="section" id="schedule">
     <div class="container">
-      <h2 class="section-title">Operation Timeline</h2>
+      <h2 class="section-title snow-pile">Operation Timeline</h2>
       <div class="schedule-wrapper reveal">
-        <div class="schedule-item">
+        <div class="schedule-item snow-pile">
           <div class="time">Dec 18 — 08:00</div>
           <div class="event">Check-in & Setup @ RSET</div>
         </div>
-        <div class="schedule-item">
+        <div class="schedule-item snow-pile">
           <div class="time">Dec 18 — 10:00</div>
           <div class="event highlight">CTF Begins (Servers Live)</div>
         </div>
-        <div class="schedule-item">
+        <div class="schedule-item snow-pile">
           <div class="time">Dec 18 — 14:00</div>
           <div class="event">Mini-Workshop: Binary Exploitation</div>
         </div>
-        <div class="schedule-item">
+        <div class="schedule-item snow-pile">
           <div class="time">Dec 18 — 22:00</div>
           <div class="event">Late Night Pizza Drop</div>
         </div>
-        <div class="schedule-item">
+        <div class="schedule-item snow-pile">
           <div class="time">Dec 19 — 10:00</div>
           <div class="event highlight">CTF Ends (Hard Stop)</div>
         </div>
-        <div class="schedule-item">
+        <div class="schedule-item snow-pile">
           <div class="time">Dec 19 — 11:00</div>
           <div class="event">Prize Distribution</div>
         </div>
@@ -174,25 +164,25 @@
   <!-- Rules Section -->
   <section class="section" id="rules">
     <div class="container">
-      <h2 class="section-title">Rules of Engagement</h2>
+      <h2 class="section-title snow-pile">Rules of Engagement</h2>
       <!-- Rules Grid Layout -->
       <div class="rules-grid reveal">
-        <div class="rule-card">
+        <div class="rule-card snow-pile">
           <div class="rule-number">01</div>
           <h3>General Conduct</h3>
           <p>Be respectful to other participants and staff. Harassment of any kind will lead to immediate disqualification.</p>
         </div>
-        <div class="rule-card">
+        <div class="rule-card snow-pile">
           <div class="rule-number">02</div>
           <h3>Network Policy</h3>
           <p>Do not attack the competition infrastructure, other teams, or the venue network. Attack only the designated targets.</p>
         </div>
-        <div class="rule-card">
+        <div class="rule-card snow-pile">
           <div class="rule-number">03</div>
           <h3>Flag Submission</h3>
           <p>The flag format is <code>Frost{...}</code>. Flags must be submitted to the scoring server before the countdown ends.</p>
         </div>
-        <div class="rule-card">
+        <div class="rule-card snow-pile">
           <div class="rule-number">04</div>
           <h3>Fair Play</h3>
           <p>Sharing flags or solutions with other teams is strictly prohibited. Play hard, but play fair.</p>
@@ -204,10 +194,10 @@
   <!--Sponsors Section-->
   <section class="section" id="sponsors">
     <div class="container">
-      <h2 class="section-title">Network Allies</h2>
+      <h2 class="section-title snow-pile">Network Allies</h2>
       <div class="sponsors-wrapper reveal">
 
-        <div class="sponsor-card tier-title">
+        <div class="sponsor-card snow-pile tier-title">
           <div class="tier-badge">Title Sponsor</div>
           <div class="sponsor-content">
             <h3>Title Sponsor</h3>
@@ -215,14 +205,14 @@
         </div>
 
         <div class="split-row">
-          <div class="sponsor-card tier-platinum">
+          <div class="sponsor-card snow-pile tier-platinum">
             <div class="tier-badge">Platinum Sponsor</div>
             <div class="sponsor-content">
             <h3>Platinum Sponsor</h3>
             </div>
           </div>
 
-          <div class="sponsor-card tier-gold">
+          <div class="sponsor-card snow-pile tier-gold">
             <div class="tier-badge">Gold Sponsor</div>
             <div class="sponsor-content">
               <h3>Gold Sponsor</h3>
@@ -231,14 +221,14 @@
         </div>
         
         <div class="split-row">
-          <div class="sponsor-card tier-silver">
+          <div class="sponsor-card snow-pile tier-silver">
             <div class="tier-badge">Platinum Sponsor</div>
             <div class="sponsor-content">
             <h3>Siliver Sponsor</h3>
             </div>
           </div>
 
-          <div class="sponsor-card tier-associate">
+          <div class="sponsor-card snow-pile tier-associate">
             <div class="tier-badge">Associate Partner</div>
             <div class="sponsor-content">
               <h3>Associate Partner</h3>
@@ -253,7 +243,7 @@
   <!-- Contact/Register Section -->
   <section class="section" id="contact">
     <div class="container">
-      <div class="cta-box reveal">
+      <div class="cta-box snow-pile reveal">
         <h2>Ready to Breach?</h2>
         <p>Registration closes soon. Secure your team's spot at RSET.</p>
         <div class="cta-links">

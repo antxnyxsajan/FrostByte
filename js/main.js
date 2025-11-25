@@ -181,29 +181,52 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Loader Overlay
   const loaderOverlay = document.getElementById('loader-overlay');
-  const lightString = document.getElementById('light-string');
-  const lightBulb = document.getElementById('light-bulb');
-
-  if (loaderOverlay && lightString && lightBulb) {
-    lightString.addEventListener('click', () => {
-      // Flicker effect
-      let flickerCount = 0;
-      const flickerInterval = setInterval(() => {
-        lightBulb.style.backgroundColor = flickerCount % 2 === 0 ? '#fff' : '#ccc';
-        flickerCount++;
-        if (flickerCount > 5) {
-          clearInterval(flickerInterval);
-          lightBulb.style.backgroundColor = '#fff';
-        }
-      }, 100);
-
-      // Open the curtains
+  if (loaderOverlay) {
+    setTimeout(() => {
+      loaderOverlay.style.opacity = '0';
       setTimeout(() => {
-        loaderOverlay.classList.add('open');
-        setTimeout(() => {
-          loaderOverlay.style.display = 'none';
-        }, 2000); // Match the CSS transition duration
-      }, 700); // Increased delay
+        loaderOverlay.style.display = 'none';
+      }, 1000);
+    }, 500);
+  }
+
+  // Registration Form
+  const registerForm = document.getElementById('registerForm');
+  if (registerForm) {
+    const messageDiv = document.getElementById('message');
+
+    registerForm.addEventListener('submit', function(e) {
+        e.preventDefault(); // Prevent default HTML form submission
+
+        // Visual feedback that something is happening
+        const btn = registerForm.querySelector('button[type="submit"]');
+        const originalText = btn.textContent;
+        btn.textContent = "Transmitting Data...";
+        btn.disabled = true;
+        messageDiv.textContent = "";
+
+        const formData = new FormData(registerForm);
+
+        fetch(registerForm.action, {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.text())
+        .then(text => {
+            messageDiv.textContent = "Registration Successful! Welcome to the system.";
+            messageDiv.style.color = "#22d3ee"; // Cyan accent color
+            registerForm.reset();
+        })
+        .catch(error => {
+            messageDiv.textContent = "Connection Error. Please try again.";
+            messageDiv.style.color = "#ef4444"; // Red error color
+            console.error(error);
+        })
+        .finally(() => {
+            // Restore button state
+            btn.textContent = originalText;
+            btn.disabled = false;
+        });
     });
   }
 });
