@@ -729,23 +729,65 @@ a { text-decoration: none; color: inherit; transition: var(--transition); }
   width: 50%;
   height: 100%;
   background-color: #000000; /* Black color for the curtain */
-  transition: transform 2s ease-in-out; /* Slower, more dramatic transition */
+  transform-origin: top; /* Pivot from the top for rotateX */
 }
 
 .curtain-panel.left {
   left: 0;
-  transform: translateX(0);
+  animation: closeCurtainLeft 0s forwards; /* Default to closed */
 }
 
 .curtain-panel.right {
   right: 0;
-  transform: translateX(0);
+  animation: closeCurtainRight 0s forwards; /* Default to closed */
 }
 
 #curtain-overlay.open .curtain-panel.left {
-  transform: translateX(-100%);
+  animation: openCurtainLeft 2s forwards; /* Animate open */
 }
 
 #curtain-overlay.open .curtain-panel.right {
-  transform: translateX(100%);
+  animation: openCurtainRight 2s forwards; /* Animate open */
+}
+
+/* Keyframes for the "bottom opens first" effect */
+@keyframes openCurtainLeft {
+  0% {
+    transform: perspective(1000px) rotateX(0deg) translateX(0);
+  }
+  25% { /* Bottom starts to "peel" open */
+    transform: perspective(1000px) rotateX(15deg) translateX(0);
+  }
+  50% { /* Curtain is fully "peeled", starting to slide */
+    transform: perspective(1000px) rotateX(0deg) translateX(0);
+  }
+  100% { /* Fully open and slid */
+    transform: perspective(1000px) rotateX(0deg) translateX(-100%);
+  }
+}
+
+@keyframes openCurtainRight {
+  0% {
+    transform: perspective(1000px) rotateX(0deg) translateX(0);
+  }
+  25% { /* Bottom starts to "peel" open */
+    transform: perspective(1000px) rotateX(15deg) translateX(0);
+  }
+  50% { /* Curtain is fully "peeled", starting to slide */
+    transform: perspective(1000px) rotateX(0deg) translateX(0);
+  }
+  100% { /* Fully open and slid */
+    transform: perspective(1000px) rotateX(0deg) translateX(100%);
+  }
+}
+
+/* Initial closed state (ensures they start closed before opening) */
+@keyframes closeCurtainLeft {
+  from { transform: perspective(1000px) rotateX(0deg) translateX(-100%); }
+  to { transform: perspective(1000px) rotateX(0deg) translateX(0); }
+}
+
+@keyframes closeCurtainRight {
+  from { transform: perspective(1000px) rotateX(0deg) translateX(100%); }
+  to { transform: perspective(1000px) rotateX(0deg) translateX(0); }
 }
