@@ -725,20 +725,23 @@ a { text-decoration: none; color: inherit; transition: var(--transition); }
   position: relative;
 }
 
-.snow-pile::after {
+.snow-pile::before, .snow-pile::after {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 10px; /* Adjust as needed */
-  border-radius: 50%;
-  box-shadow:
-    0 2px 2px 0 rgba(255, 255, 255, 0.8),
-    0 4px 4px 0 rgba(255, 255, 255, 0.7),
-    0 6px 6px 0 rgba(255, 255, 255, 0.6),
-    0 8px 8px 0 rgba(255, 255, 255, 0.5),
-    0 10px 10px 0 rgba(255, 255, 255, 0.4);
-  transform: translateY(-50%);
-  z-index: 10;
+  left: -2px;
+  top: -2px;
+  right: -2px;
+  height: 2px;
+  border-radius: 5px;
+  background: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.snow-pile::after {
+  top: -5px;
+  left: -5px;
+  right: 5px;
+  height: 3px;
+  border-radius: 8px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
 }
