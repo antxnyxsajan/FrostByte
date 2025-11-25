@@ -709,15 +709,43 @@ a { text-decoration: none; color: inherit; transition: var(--transition); }
   height: 100%;
   z-index: -1;
   pointer-events: none;
-}/* Loader Overlay */
-#loader-overlay {
+}
+
+/* Curtain effect */
+#curtain-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #000;
   z-index: 9999;
-  transition: opacity 1s ease-in-out;
+  overflow: hidden;
+  pointer-events: none; /* Allow clicks to pass through */
 }
 
+.curtain-panel {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  background-color: #000000; /* Black color for the curtain */
+  transition: transform 2s ease-in-out; /* Slower, more dramatic transition */
+}
+
+.curtain-panel.left {
+  left: 0;
+  transform: translateX(0);
+}
+
+.curtain-panel.right {
+  right: 0;
+  transform: translateX(0);
+}
+
+#curtain-overlay.open .curtain-panel.left {
+  transform: translateX(-100%);
+}
+
+#curtain-overlay.open .curtain-panel.right {
+  transform: translateX(100%);
+}

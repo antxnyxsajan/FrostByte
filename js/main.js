@@ -179,18 +179,6 @@ document.addEventListener('DOMContentLoaded', () => {
     animate();
   }
 
-  // Loader Overlay
-  const loaderOverlay = document.getElementById('loader-overlay');
-  if (loaderOverlay) {
-    setTimeout(() => {
-      loaderOverlay.style.opacity = '0';
-      setTimeout(() => {
-        loaderOverlay.style.display = 'none';
-      }, 1000);
-    }, 500);
-  }
-
-
   // Registration Form
   const registerForm = document.getElementById('registerForm');
   if (registerForm) {
@@ -229,5 +217,13 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.disabled = false;
         });
     });
+  }
+
+  const curtainOverlay = document.getElementById('curtain-overlay');
+  if (curtainOverlay) {
+    // Open the curtain after a short delay
+    setTimeout(() => {
+      curtainOverlay.classList.add('open');
+    }, 500);
   }
 });
