@@ -178,4 +178,32 @@ document.addEventListener('DOMContentLoaded', () => {
     createSnowflakes();
     animate();
   }
+
+  // Loader Overlay
+  const loaderOverlay = document.getElementById('loader-overlay');
+  const lightString = document.getElementById('light-string');
+  const lightBulb = document.getElementById('light-bulb');
+
+  if (loaderOverlay && lightString && lightBulb) {
+    lightString.addEventListener('click', () => {
+      // Flicker effect
+      let flickerCount = 0;
+      const flickerInterval = setInterval(() => {
+        lightBulb.style.backgroundColor = flickerCount % 2 === 0 ? '#fff' : '#ccc';
+        flickerCount++;
+        if (flickerCount > 5) {
+          clearInterval(flickerInterval);
+          lightBulb.style.backgroundColor = '#fff';
+        }
+      }, 100);
+
+      // Fade out the overlay
+      setTimeout(() => {
+        loaderOverlay.style.opacity = '0';
+        setTimeout(() => {
+          loaderOverlay.style.display = 'none';
+        }, 1000);
+      }, 500);
+    });
+  }
 });
