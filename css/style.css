@@ -716,51 +716,107 @@ a { text-decoration: none; color: inherit; transition: var(--transition); }
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
   z-index: 9999;
-  transition: opacity 1s ease-in-out;
+  overflow: hidden; /* Hide the content until curtains open */
+}
+
+.curtain-panel {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  background-color: #000;
+  transition: transform 1.5s cubic-bezier(0.645, 0.045, 0.355, 1); /* Ease-in-out */
+}
+
+.curtain-panel.left {
+  left: 0;
+}
+
+.curtain-panel.right {
+  right: 0;
+}
+
+#loader-overlay.open .curtain-panel.left {
+  transform: translateX(-100%);
+}
+
+#loader-overlay.open .curtain-panel.right {
+  transform: translateX(100%);
+}
+
+#light-fixture-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10000; /* Ensure it's above the curtains */
+  transition: opacity 0.5s ease-in-out;
+}
+
+#loader-overlay.open #light-fixture-container {
+  opacity: 0;
+  pointer-events: none;
 }
 
 #light-fixture {
   position: relative;
-  width: 100px;
-  height: 50px;
-  background-color: #fff;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+  top: 0;
+  width: 150px; /* Wider fixture */
+  height: 40px; /* Shorter fixture */
+  background: linear-gradient(to bottom, #e0e0e0, #f5f5f5); /* Gradient for depth */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom: 2px solid #bdbdbd; /* Bottom border for definition */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  margin-top: 0; /* remove the negative margin */
 }
 
 #light-bulb {
   position: absolute;
-  bottom: -40px;
+  bottom: -50px; /* Lower the bulb */
   left: 50%;
   transform: translateX(-50%);
-  width: 40px;
-  height: 40px;
-  background-color: #fff;
+  width: 50px; /* Larger bulb */
+  height: 50px;
+  background: radial-gradient(circle, #ffffff, #f0f0f0);
   border-radius: 50%;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+  box-shadow: 0 5px 25px 5px rgba(255, 255, 255, 0.7); /* More prominent glow */
 }
 
 #light-string {
   position: absolute;
-  bottom: -150px;
+  bottom: -200px; /* Longer string */
   left: 50%;
   transform: translateX(-50%);
-  width: 4px;
-  height: 100px;
-  background-image: linear-gradient(to bottom, #fff 2px, transparent 2px);
-  background-size: 100% 10px;
+  width: 6px; /* Thicker string */
+  height: 150px; /* Longer string */
+  background-image:
+    radial-gradient(circle at center, #dcdcdc 2px, transparent 2px),
+    linear-gradient(to bottom, #888888, #888888);
+  background-size: 6px 12px, 1px 12px;
+  background-repeat: repeat-y, repeat-y;
+  background-position: center, center;
   cursor: pointer;
+  transition: transform 0.1s;
 }
+
+#light-string:hover {
+  transform: translateY(5px);
+}
+
 
 #loader-text {
   color: #fff;
-  margin-top: 20px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 1.2rem;
+  margin-top: 150px; /* Adjust margin to position it below the light */
+  font-family: 'Outfit', sans-serif; /* Cleaner font */
+  font-size: 5vw; /* Responsive font size */
+  font-weight: 700;
+  text-align: center;
+  width: 100%;
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px rgba(255,255,255,0.3);
 }

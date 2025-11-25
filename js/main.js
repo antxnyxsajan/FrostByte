@@ -197,12 +197,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }, 100);
 
-      // Fade out the overlay
+      // Open the curtains
       setTimeout(() => {
-        loaderOverlay.style.opacity = '0';
+        loaderOverlay.classList.add('open');
         setTimeout(() => {
           loaderOverlay.style.display = 'none';
-        }, 1000);
+        }, 1500); // Match the CSS transition duration
       }, 500);
     });
   }
