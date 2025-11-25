@@ -729,55 +729,65 @@ a { text-decoration: none; color: inherit; transition: var(--transition); }
   width: 50%;
   height: 100%;
   background-color: #000000; /* Black color for the curtain */
-  transform-origin: bottom; /* Crucial for scaling from the bottom */
-  /* No direct transition property here, handled by animation */
+  transform-origin: top; /* Pivot from the top for rotateX */
 }
 
 .curtain-panel.left {
   left: 0;
-  animation: none; /* Reset animation for initial state */
+  animation: closeCurtainLeft 0s forwards; /* Default to closed */
 }
 
 .curtain-panel.right {
   right: 0;
-  animation: none; /* Reset animation for initial state */
+  animation: closeCurtainRight 0s forwards; /* Default to closed */
 }
 
 #curtain-overlay.open .curtain-panel.left {
-  animation: openCurtainLeftPhysical 2.5s forwards; /* Increased duration for stages */
+  animation: openCurtainLeft 2s forwards; /* Animate open */
 }
 
 #curtain-overlay.open .curtain-panel.right {
-  animation: openCurtainRightPhysical 2.5s forwards; /* Increased duration for stages */
+  animation: openCurtainRight 2s forwards; /* Animate open */
 }
 
-/* Keyframes for a more "physical" bottom-first opening */
-@keyframes openCurtainLeftPhysical {
+/* Keyframes for the "bottom opens first" effect */
+@keyframes openCurtainLeft {
   0% {
-    transform: scaleY(1) translateX(0); /* Start fully closed, no horizontal movement */
+    transform: perspective(1000px) rotateX(0deg) translateX(0);
   }
-  30% {
-    transform: scaleY(0.8) translateX(0); /* Bottom starts to "gather"/unfurl (scale down from bottom) */
+  25% { /* Bottom starts to "peel" open */
+    transform: perspective(1000px) rotateX(15deg) translateX(0);
   }
-  60% {
-    transform: scaleY(0.8) translateX(-100%); /* Maintain gathered state while sliding begins */
+  50% { /* Curtain is fully "peeled", starting to slide */
+    transform: perspective(1000px) rotateX(0deg) translateX(0);
   }
-  100% {
-    transform: scaleY(0) translateX(-100%); /* Fully disappear to the left (scaled to 0 from bottom) */
+  100% { /* Fully open and slid */
+    transform: perspective(1000px) rotateX(0deg) translateX(-100%);
   }
 }
 
-@keyframes openCurtainRightPhysical {
+@keyframes openCurtainRight {
   0% {
-    transform: scaleY(1) translateX(0); /* Start fully closed, no horizontal movement */
+    transform: perspective(1000px) rotateX(0deg) translateX(0);
   }
-  30% {
-    transform: scaleY(0.8) translateX(0); /* Bottom starts to "gather"/unfurl (scale down from bottom) */
+  25% { /* Bottom starts to "peel" open */
+    transform: perspective(1000px) rotateX(15deg) translateX(0);
   }
-  60% {
-    transform: scaleY(0.8) translateX(100%); /* Maintain gathered state while sliding begins */
+  50% { /* Curtain is fully "peeled", starting to slide */
+    transform: perspective(1000px) rotateX(0deg) translateX(0);
   }
-  100% {
-    transform: scaleY(0) translateX(100%); /* Fully disappear to the right (scaled to 0 from bottom) */
+  100% { /* Fully open and slid */
+    transform: perspective(1000px) rotateX(0deg) translateX(100%);
   }
+}
+
+/* Initial closed state (ensures they start closed before opening) */
+@keyframes closeCurtainLeft {
+  from { transform: perspective(1000px) rotateX(0deg) translateX(-100%); }
+  to { transform: perspective(1000px) rotateX(0deg) translateX(0); }
+}
+
+@keyframes closeCurtainRight {
+  from { transform: perspective(1000px) rotateX(0deg) translateX(100%); }
+  to { transform: perspective(1000px) rotateX(0deg) translateX(0); }
 }
