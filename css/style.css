@@ -720,20 +720,4 @@ a { text-decoration: none; color: inherit; transition: var(--transition); }
   z-index: 9999;
   transition: opacity 1s ease-in-out;
 }
-/* Snow Pile Effect */
-.snow-pile {
-  position: relative;
-}
 
-.snow-pile::before {
-  content: '';
-  position: absolute;
-  top: -10px;
-  left: 0;
-  width: 100%;
-  height: 20px;
-  background-image: url('../assets/snow-pile.svg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  z-index: 10;
-}

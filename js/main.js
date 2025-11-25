@@ -190,6 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 500);
   }
 
+
   // Registration Form
   const registerForm = document.getElementById('registerForm');
   if (registerForm) {
