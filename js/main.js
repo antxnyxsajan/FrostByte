@@ -202,8 +202,8 @@ document.addEventListener('DOMContentLoaded', () => {
         loaderOverlay.classList.add('open');
         setTimeout(() => {
           loaderOverlay.style.display = 'none';
-        }, 1500); // Match the CSS transition duration
-      }, 500);
+        }, 2000); // Match the CSS transition duration
+      }, 700); // Increased delay
     });
   }
 });
