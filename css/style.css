@@ -729,17 +729,17 @@ a { text-decoration: none; color: inherit; transition: var(--transition); }
   width: 50%;
   height: 100%;
   background-color: #000000; /* Black color for the curtain */
-  transform-origin: bottom; /* Pivot from the bottom */
+  transform-origin: top; /* Pivot from the top for rotateX */
 }
 
 .curtain-panel.left {
   left: 0;
-  transform: translateX(0); /* Default to closed */
+  animation: closeCurtainLeft 0s forwards; /* Default to closed */
 }
 
 .curtain-panel.right {
   right: 0;
-  transform: translateX(0); /* Default to closed */
+  animation: closeCurtainRight 0s forwards; /* Default to closed */
 }
 
 #curtain-overlay.open .curtain-panel.left {
@@ -750,33 +750,44 @@ a { text-decoration: none; color: inherit; transition: var(--transition); }
   animation: openCurtainRight 2s forwards; /* Animate open */
 }
 
-/* Keyframes for the "bottom opens first" effect using translateY and translateX */
+/* Keyframes for the "bottom opens first" effect */
 @keyframes openCurtainLeft {
   0% {
-    transform: translateX(0) translateY(0);
+    transform: perspective(1000px) rotateX(0deg) translateX(0);
   }
-  30% { /* Simulate a slight pull down at the bottom */
-    transform: translateX(0) translateY(20px);
+  25% { /* Bottom starts to "peel" open */
+    transform: perspective(1000px) rotateX(15deg) translateX(0);
   }
-  60% { /* Straighten out before sliding */
-    transform: translateX(0) translateY(0);
+  50% { /* Curtain is fully "peeled", starting to slide */
+    transform: perspective(1000px) rotateX(0deg) translateX(0);
   }
-  100% { /* Slide open to the left */
-    transform: translateX(-100%) translateY(0);
+  100% { /* Fully open and slid */
+    transform: perspective(1000px) rotateX(0deg) translateX(-100%);
   }
 }
 
 @keyframes openCurtainRight {
   0% {
-    transform: translateX(0) translateY(0);
+    transform: perspective(1000px) rotateX(0deg) translateX(0);
   }
-  30% { /* Simulate a slight pull down at the bottom */
-    transform: translateX(0) translateY(20px);
+  25% { /* Bottom starts to "peel" open */
+    transform: perspective(1000px) rotateX(15deg) translateX(0);
   }
-  60% { /* Straighten out before sliding */
-    transform: translateX(0) translateY(0);
+  50% { /* Curtain is fully "peeled", starting to slide */
+    transform: perspective(1000px) rotateX(0deg) translateX(0);
   }
-  100% { /* Slide open to the right */
-    transform: translateX(100%) translateY(0);
+  100% { /* Fully open and slid */
+    transform: perspective(1000px) rotateX(0deg) translateX(100%);
   }
+}
+
+/* Initial closed state (ensures they start closed before opening) */
+@keyframes closeCurtainLeft {
+  from { transform: perspective(1000px) rotateX(0deg) translateX(-100%); }
+  to { transform: perspective(1000px) rotateX(0deg) translateX(0); }
+}
+
+@keyframes closeCurtainRight {
+  from { transform: perspective(1000px) rotateX(0deg) translateX(100%); }
+  to { transform: perspective(1000px) rotateX(0deg) translateX(0); }
 }
