@@ -585,15 +585,16 @@ a { text-decoration: none; color: inherit; transition: var(--transition); }
 
 /* --- Unified Card Style --- */
 .sponsor-card {
-  display: flex; /* Row layout: Badge Left | Content Right */
-  align-items: stretch; /* Make badge stretch full height */
+  display: flex;
+  align-items: stretch;
   background: linear-gradient(145deg, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.9));
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 24px; /* Rounded edges */
+  border-radius: 24px;
   overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy transition */
-  min-height: 200px; /* Tall enough for big logos */
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  backdrop-filter: blur(12px);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  height: 250px;
 }
 
 /* Hover Animation */
@@ -750,17 +751,21 @@ a { text-decoration: none; color: inherit; transition: var(--transition); }
   transform: translateX(100%);
 }
 
-.sponsor-logo {
-  max-width: 80%;      
-  max-height: 120px;    
-  height: 100px;       
-  width: 100px;         
-  object-fit: contain; 
-  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2)); 
+.sponsor-content {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
 }
 
-/* Optional: Make the title tier logo slightly bigger since the card is bigger */
-.tier-title .sponsor-logo {
-  max-height: 160px; 
+.sponsor-logo {
+  max-height: 80%;
   max-width: 90%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
 }
