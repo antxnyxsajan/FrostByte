@@ -458,7 +458,7 @@ a { text-decoration: none; color: inherit; transition: var(--transition); }
 }
 .schedule-item:hover { background: rgba(255,255,255,0.03); }
 .schedule-item:last-child { border-bottom: none; }
-.schedule-item .time { width: 180px; font-weight: 600; color: var(--accent); flex-shrink: 0; font-family: monospace; font-size: 1.1rem; }
+.schedule-item .time { width: 280px; font-weight: 600; color: var(--accent); flex-shrink: 0; font-family: monospace; font-size: 1.1rem; }
 .schedule-item .event { color: var(--text-main); }
 .schedule-item .event.highlight { color: #fbbf24; font-weight: 700; }
 
