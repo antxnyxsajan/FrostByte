@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!el) return;
     
     // Set to Dec 18, 2025
-    const eventDate = new Date('2025-12-18T10:00:00');
+    const eventDate = new Date('2026-01-09T10:00:00');
 
     function update() {
       const now = new Date();
