@@ -652,7 +652,7 @@ a { text-decoration: none; color: inherit; transition: var(--transition); }
 .tier-title {
   border: 2px solid var(--primary); /* Thicker border */
   box-shadow: 0 0 40px rgba(99, 102, 241, 0.2);
-  min-height: 220px; /* Title is slightly taller */
+  min-height: 280px; /* Title is slightly taller */
 }
 .tier-title .tier-badge {
   background: var(--primary);
@@ -765,12 +765,17 @@ a { text-decoration: none; color: inherit; transition: var(--transition); }
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: 0px;
   height: 100%;
   width: 100%;
   overflow: hidden;
 }
 
+.sponsor-title-logo{
+  width:200%;
+  height:100%;
+  object-fit: contain;
+}
 .sponsor-logo {
   max-height: 80%;
   max-width: 90%;
