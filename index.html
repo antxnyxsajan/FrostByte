@@ -1,117 +1,171 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>FrostByte CTF 2025</title>
-  <meta name="description" content="FrostByte CTF – 12-hour security hackathon at Rajagiri School of Engineering and Technology.">
+  <meta name="description"
+    content="FrostByte CTF – 12-hour security hackathon at Rajagiri School of Engineering and Technology.">
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@700;800&family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@700;800&family=JetBrains+Mono:wght@400;700;800&display=swap"
+    rel="stylesheet">
   <!-- Global stylesheet -->
   <link rel="stylesheet" href="css/style.css">
   <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
   <!-- Google tag (gtag.js) -->
   <!--<script async src="https://www.googletagmanager.com/gtag/js?id=G-YNKC0TNEQN"></script>-->
   <style>
-  /* --- FORCE BOX STYLES --- */
-  .prizes-grid {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
-    flex-wrap: wrap;
-    margin-top: 60px;
-    padding-bottom: 50px;
-  }
-
-  .prize-card {
-    flex: 0 1 300px;
-    /* Stronger background so you can see the box */
-    background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
-    border: 2px solid rgba(255, 255, 255, 0.2); /* Thicker border */
-    border-radius: 20px;
-    padding: 30px;
-    text-align: center;
-    width: 300px;
-    max-width: 100%;
-    position: relative;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5); /* Deep shadow to pop off screen */
-    backdrop-filter: blur(10px);
-    margin: 0;
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
-              box-shadow 0.4s ease, 
-              border-color 0.4s ease;
-  } 
-
-  .prize-card:hover {
-  /* Lifts the card up by 15px */
-  transform: translateY(-15px); 
-  background: rgba(255, 255, 255, 0.08); /* Slightly brighter glass */
-}
-
-  /* GOLD BOX */
-  .prize-card.gold {
-    border: 3px solid #ffd700; /* Bright Gold Border */
-    transform: scale(1.15); /* Bigger */
-    z-index: 2;
-    box-shadow: 0 0 25px rgba(255, 215, 0, 0.3); /* Gold Glow */
-    background: linear-gradient(145deg, rgba(255, 215, 0, 0.1), rgba(0,0,0,0.3));
-    margin: 0 20px;
-  }
-
-  .prize-card.gold:hover {
-  transform: scale(1.15) translateY(-15px); 
-  box-shadow: 0 0 50px rgba(255, 215, 0, 0.6); /* Intense Gold Glow */
-  border-color: #fff700;
-}
-
-  /* SILVER BOX */
-  .prize-card.silver {
-    border: 2px solid #c0c0c0; /* Silver Border */
-    margin-top: 20px; /* Push down slightly */
-  }
-
-  .prize-card.silver:hover {
-  box-shadow: 0 0 40px rgba(192, 192, 192, 0.4); /* Silver Glow */
-  border-color: #ffffff;
-}
-
-  /* BRONZE BOX */
-  .prize-card.bronze {
-    border: 2px solid #cd7f32; /* Bronze Border */
-    margin-top: 20px; /* Push down slightly */
-  }
-
-  .prize-card.bronze:hover {
-  box-shadow: 0 0 40px rgba(205, 127, 50, 0.4); /* Bronze Glow */
-  border-color: #ffad60;
-}
-
-  /* TEXT STYLES */
-  .prize-icon { font-size: 3rem; margin-bottom: 10px; display: block; }
-  .prize-title { font-size: 1.5rem; margin: 10px 0; font-weight: bold; color: white; }
-  .prize-amount { font-size: 2rem; font-weight: 800; margin-bottom: 15px; display: block; }
-  .prize-card.gold .prize-amount { color: #ffd700; }
-  .prize-card.silver .prize-amount { color: #e0e0e0; }
-  .prize-card.bronze .prize-amount { color: #cd7f32; }
-  
-  .prize-card:hover .prize-icon {
-  transform: scale(1.2) rotate(5deg); /* Grows and tilts slightly */
-  transition: transform 0.3s ease;
-}
-
-  /* Stack vertically on mobile */
-  @media (max-width: 768px) {
-    .prizes-grid { flex-direction: column; gap:50xp;}
-    .prize-card.gold { transform: scale(1); order: -1; }/* Gold first on mobile */
-    .prize-card.silver,.prize-card.bronze{
-      margin-top: 0;
+    /* --- FORCE BOX STYLES --- */
+    .prizes-grid {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      flex-wrap: wrap;
+      margin-top: 60px;
+      padding-bottom: 50px;
     }
-  }
-</style>
+
+    .prize-card {
+      flex: 0 1 300px;
+      /* Stronger background so you can see the box */
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      /* Thicker border */
+      border-radius: 20px;
+      padding: 30px;
+      text-align: center;
+      width: 300px;
+      max-width: 100%;
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      /* Deep shadow to pop off screen */
+      backdrop-filter: blur(10px);
+      margin: 0;
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+        box-shadow 0.4s ease,
+        border-color 0.4s ease;
+    }
+
+    .prize-card:hover {
+      /* Lifts the card up by 15px */
+      transform: translateY(-15px);
+      background: rgba(255, 255, 255, 0.08);
+      /* Slightly brighter glass */
+    }
+
+    /* GOLD BOX */
+    .prize-card.gold {
+      border: 3px solid #ffd700;
+      /* Bright Gold Border */
+      transform: scale(1.15);
+      /* Bigger */
+      z-index: 2;
+      box-shadow: 0 0 25px rgba(255, 215, 0, 0.3);
+      /* Gold Glow */
+      background: linear-gradient(145deg, rgba(255, 215, 0, 0.1), rgba(0, 0, 0, 0.3));
+      margin: 0 20px;
+    }
+
+    .prize-card.gold:hover {
+      transform: scale(1.15) translateY(-15px);
+      box-shadow: 0 0 50px rgba(255, 215, 0, 0.6);
+      /* Intense Gold Glow */
+      border-color: #fff700;
+    }
+
+    /* SILVER BOX */
+    .prize-card.silver {
+      border: 2px solid #c0c0c0;
+      /* Silver Border */
+      margin-top: 20px;
+      /* Push down slightly */
+    }
+
+    .prize-card.silver:hover {
+      box-shadow: 0 0 40px rgba(192, 192, 192, 0.4);
+      /* Silver Glow */
+      border-color: #ffffff;
+    }
+
+    /* BRONZE BOX */
+    .prize-card.bronze {
+      border: 2px solid #cd7f32;
+      /* Bronze Border */
+      margin-top: 20px;
+      /* Push down slightly */
+    }
+
+    .prize-card.bronze:hover {
+      box-shadow: 0 0 40px rgba(205, 127, 50, 0.4);
+      /* Bronze Glow */
+      border-color: #ffad60;
+    }
+
+    /* TEXT STYLES */
+    .prize-icon {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .prize-title {
+      font-size: 1.5rem;
+      margin: 10px 0;
+      font-weight: bold;
+      color: white;
+    }
+
+    .prize-amount {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 15px;
+      display: block;
+    }
+
+    .prize-card.gold .prize-amount {
+      color: #ffd700;
+    }
+
+    .prize-card.silver .prize-amount {
+      color: #e0e0e0;
+    }
+
+    .prize-card.bronze .prize-amount {
+      color: #cd7f32;
+    }
+
+    .prize-card:hover .prize-icon {
+      transform: scale(1.2) rotate(5deg);
+      /* Grows and tilts slightly */
+      transition: transform 0.3s ease;
+    }
+
+    /* Stack vertically on mobile */
+    @media (max-width: 768px) {
+      .prizes-grid {
+        flex-direction: column;
+        gap: 50xp;
+      }
+
+      .prize-card.gold {
+        transform: scale(1);
+        order: -1;
+      }
+
+      /* Gold first on mobile */
+      .prize-card.silver,
+      .prize-card.bronze {
+        margin-top: 0;
+      }
+    }
+  </style>
 </head>
+
 <body>
   <div id="curtain-overlay">
     <div class="curtain-panel left"></div>
@@ -135,7 +189,8 @@
         <a href="#schedule" data-target="schedule" class="nav-link">Timeline</a>
         <!--<a href="#rules" data-target="rules" class="nav-link">Rules</a>-->
         <a href="#sponsors" data-target="sponsors" class="nav-link">Sponsors</a>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeA2mt-JZrQduTgNrShOx4oxKdV7t22Oa3MPCu-__KW-LHtEQ/viewform?usp=publish-editor" target="_blank" class="nav-link btn-nav">Register</a>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeA2mt-JZrQduTgNrShOx4oxKdV7t22Oa3MPCu-__KW-LHtEQ/viewform?usp=publish-editor"
+          target="_blank" class="nav-link btn-nav">Register</a>
       </nav>
       <button id="menuToggle" class="menu-toggle" aria-label="Open menu" aria-expanded="false">
         <span class="bar"></span>
@@ -147,130 +202,122 @@
 
   <!-- Hero Section -->
   <section class="section hero-section" id="home">
-  <div class="container hero-grid">
-    <div class="hero-left reveal">
-      
-      <!--<h1 class="cyber-glitch">FrostByte_</h1>-->
+    <div class="container hero-grid">
+      <div class="hero-left reveal">
 
-      <div class="badge">Jan 9 • 12 Hours</div>
-      
-      <h2 class="gradient-text">Break the Ice.<br>Hack the System.</h2>
-      
-      <p class="lead">Join the ultimate 12-hour Capture The Flag competition. Test your skills in cryptography, reverse engineering, and exploitation.</p>
-      
-      <div class="countdown-box">
-        <div id="countdown" class="countdown">Loading...</div>
-        <div class="count-label">Until Breach</div>
+        <!--<h1 class="cyber-glitch">FrostByte_</h1>-->
+
+        <div class="badge">Jan 9 • 12 Hours</div>
+
+        <h2 class="gradient-text">Break the Ice.<br>Hack the System.</h2>
+
+        <p class="lead">Join the ultimate 12-hour Capture The Flag competition. Test your skills in cryptography,
+          reverse engineering, and exploitation.</p>
+
+        <div class="countdown-box">
+          <div id="countdown" class="countdown">Loading...</div>
+          <div class="count-label">Until Breach</div>
+        </div>
+
+        <div class="cta-row">
+          <a class="btn btn-primary"
+            href="https://docs.google.com/forms/d/e/1FAIpQLSeA2mt-JZrQduTgNrShOx4oxKdV7t22Oa3MPCu-__KW-LHtEQ/viewform?usp=publish-editor"
+            target="_blank">Register Team</a>
+          <a class="btn btn-outline" href="#mission">Read Briefing</a>
+        </div>
       </div>
 
-      <div class="cta-row">
-        <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSeA2mt-JZrQduTgNrShOx4oxKdV7t22Oa3MPCu-__KW-LHtEQ/viewform?usp=publish-editor" target="_blank">Register Team</a>
-        <a class="btn btn-outline" href="#mission">Read Briefing</a>
+      <div class="hero-right reveal">
+        <dotlottie-player src="assets/Lotties/hero1.lottie" background="transparent" speed="1"
+          style="width: 100%; height: 500px;" loop autoplay>
+        </dotlottie-player>
       </div>
     </div>
-    
-    <div class="hero-right reveal">
-      <dotlottie-player
-        src="assets/Lotties/hero1.lottie"
-        background="transparent"
-        speed="1"
-        style="width: 100%; height: 500px;"
-        loop
-        autoplay>
-      </dotlottie-player>
-    </div>
-  </div>
-</section>
+  </section>
 
   <!-- Mission/About Section -->
   <section class="section" id="mission">
     <div class="container">
       <h2 class="section-title">Mission Brief</h2>
       <div class="mission-hero" style="text-align: center; margin-top: 0px;">
-      <img 
-        src="assets/Pictures/frostbyte logo.png" 
-        alt="FrostByte" 
-        style="width: 700px; height: auto; max-width: 100%; margin-bottom: 20px;"
-      >
+        <img src="assets/Pictures/frostbyte logo.png" alt="FrostByte"
+          style="width: 700px; height: auto; max-width: 100%; margin-bottom: 20px;">
       </div>
 
       <div class="mission-content" style="margin-bottom: 5px;">
-      <p style="max-width: 800px; margin: 0 auto; color: #cbd5e1; text-align: center; font-size: large;">
-        FrostByte is a flagship Capture The Flag event designed to challenge and inspire the next generation of cybersecurity experts. 
-        We are proud to be powered by our strategic knowledge partner, <strong>Offenso Academy</strong>.
-      </p>
+        <p style="max-width: 800px; margin: 0 auto; color: #cbd5e1; text-align: center; font-size: large;">
+          FrostByte is a flagship Capture The Flag event designed to challenge and inspire the next generation of
+          cybersecurity experts.
+          We are proud to be powered by our strategic knowledge partner, <strong>Offenso Academy</strong>.
+        </p>
       </div>
 
       <div class="mission-partners" style="display: flex; align-items: center; justify-content: center; gap: 50px;">
-      
-      <img 
-        src="assets/Pictures/acm x offenso.png" 
-        alt="ACM" 
-        style="height: 280px; width: auto; margin-top: 20px; margin-bottom: 75px;"
-        class="hide-on-mobile"
-      >
-      <img 
-        src="assets/Pictures/acm x offenso mobile.png" 
-        alt="ACM" 
-        style="height: 300px; width: auto; margin-top: 20px; margin-bottom: 75px;"
-        class="hide-on-desktop"
-      >
 
-      <!--<span style="font-size: 50px; font-weight: bold; color: #22d3ee;">X‎ ‎ ‎ ‎ </span>
+        <img src="assets/Pictures/acm x offenso.png" alt="ACM"
+          style="height: 280px; width: auto; margin-top: 20px; margin-bottom: 75px;" class="hide-on-mobile">
+        <img src="assets/Pictures/acm x offenso mobile.png" alt="ACM"
+          style="height: 300px; width: auto; margin-top: 20px; margin-bottom: 75px;" class="hide-on-desktop">
+
+        <!--<span style="font-size: 50px; font-weight: bold; color: #22d3ee;">X‎ ‎ ‎ ‎ </span>
       
       <img 
         src="assets/Pictures/Offenso-Logo-White.png" 
         alt="Offenso Academy" 
         style="height: 175px; width: auto;"
       >-->
-      
+
       </div>
 
       <div class="card-grid reveal">
         <div class="card">
           <h3>The Objective</h3>
-          <p>Find vulnerabilities, exploit them, and capture the "flags". Tracks include <strong>Web Exploitation</strong>, <strong>Cryptography</strong>, <strong>Forensics</strong>, and <strong>Reverse Engineering</strong>.</p>
+          <p>Find vulnerabilities, exploit them, and capture the "flags". Tracks include <strong>Web
+              Exploitation</strong>, <strong>Cryptography</strong>, <strong>Forensics</strong>, and <strong>Reverse
+              Engineering</strong>.</p>
         </div>
         <div class="card">
           <h3>Who Can Join?</h3>
-          <p>Open to all students. Whether you are a script kiddie or a red team pro, there are challenges for every skill level. Mentors will be on-site.</p>
+          <p>Open to all students. Whether you are a script kiddie or a red team pro, there are challenges for every
+            skill level. Mentors will be on-site.</p>
         </div>
         <div class="card">
           <h3>The Loot</h3>
-          <p>Cash prizes for the top 3 teams, substantial monetary rewards, and high-value winnings for top performers.</p>
+          <p>Cash prizes for the top 3 teams, substantial monetary rewards, and high-value winnings for top performers.
+          </p>
         </div>
       </div>
     </div>
   </section>
 
-   <!--Prizes Section-->
-<section class="section" id="prizes">
-  <div class="container">
-    <h2 class="section-title">Rewards</h2>
-    
-    <div class="prizes-grid reveal">
-      
-      <div class="prize-card silver">
-        <div class="prize-icon">🥈</div>
-        <h3 class="prize-title">2nd Place</h3>
-        <div class="prize-amount">₹7,500</div>
-      </div>
+  <!--Prizes Section-->
+  <section class="section" id="prizes">
+    <div class="container">
+      <h2 class="section-title">Rewards</h2>
 
-      <div class="prize-card gold main-prize">
-        <div class="prize-icon">🏆</div>
-        <h3 class="prize-title">1st Place</h3>
-        <div class="prize-amount">₹10,000</div>
-      </div>
+      <div class="prizes-grid reveal">
 
-      <div class="prize-card bronze">
-        <div class="prize-icon">🥉</div>
-        <h3 class="prize-title">3rd Place</h3>
-        <div class="prize-amount">₹2,500</div>
-      </div>
+        <div class="prize-card silver">
+          <div class="prize-icon">🥈</div>
+          <h3 class="prize-title">2nd Place</h3>
+          <div class="prize-amount">₹7,500</div>
+        </div>
 
+        <div class="prize-card gold main-prize">
+          <div class="prize-icon">🏆</div>
+          <h3 class="prize-title">1st Place</h3>
+          <div class="prize-amount">₹10,000</div>
+        </div>
+
+        <div class="prize-card bronze">
+          <div class="prize-icon">🥉</div>
+          <h3 class="prize-title">3rd Place</h3>
+          <div class="prize-amount">₹2,500</div>
+        </div>
+
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
   <!-- Location Section -->
   <section class="section bg-accent" id="location">
@@ -306,15 +353,15 @@
       <h2 class="section-title">Operation Timeline</h2>
       <div class="schedule-wrapper reveal">
         <div class="schedule-item">
-          <div class="time">Jan 9  : 05:30 PM</div>
+          <div class="time">Jan 9 : 05:30 PM</div>
           <div class="event">Check-in & Setup @ RSET</div>
         </div>
         <div class="schedule-item">
-          <div class="time">Jan 9  : 06:00 PM</div>
+          <div class="time">Jan 9 : 06:00 PM</div>
           <div class="event">Introductory Hands-On Workshop</div>
         </div>
         <div class="schedule-item">
-          <div class="time">Jan 9  : 09:00 PM</div>
+          <div class="time">Jan 9 : 09:00 PM</div>
           <div class="event highlight">CTF Begins</div>
         </div>
         <div class="schedule-item">
@@ -360,13 +407,13 @@
       <div class="sponsors-wrapper reveal">
 
         <div style="display: flex; justify-content: center; margin-bottom: 30px;">
-        <div class="sponsor-card tier-title" style="width: 100%; max-width: 600px;">
-          <div class="tier-badge">Platinum Sponsor</div>
-          <div class="sponsor-content">
-            <img src="assets/Pictures/prestige logo resized.jpg" alt="Prestige" class="sponsor-title-logo">
+          <div class="sponsor-card tier-title" style="width: 100%; max-width: 600px;">
+            <div class="tier-badge">Platinum Sponsor</div>
+            <div class="sponsor-content">
+              <img src="assets/Pictures/prestige logo resized.jpg" alt="Prestige" class="sponsor-title-logo">
+            </div>
           </div>
         </div>
-      </div>
 
         <!--<div class="split-row">
           <div class="sponsor-card tier-platinum">
@@ -383,12 +430,12 @@
             </div>
           </div>
         </div>-->
-        
+
         <div class="split-row">
           <div class="sponsor-card tier-silver">
             <div class="tier-badge">Associate Sponsor</div>
             <div class="sponsor-content">
-            <img src="assets/Pictures/growwie.jpg" width="550px">
+              <img src="assets/Pictures/growwie.jpg" width="550px">
             </div>
           </div>
 
@@ -399,7 +446,7 @@
             </div>
           </div>
         </div>
-      
+
       </div>
     </div>
   </section>
@@ -411,7 +458,8 @@
         <h2>Ready to Breach?</h2>
         <p>Registration closes soon. Secure your team's spot at RSET.</p>
         <div class="cta-links">
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSeA2mt-JZrQduTgNrShOx4oxKdV7t22Oa3MPCu-__KW-LHtEQ/viewform?usp=publish-editor" target="_blank" class="btn btn-primary">Register Now</a>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSeA2mt-JZrQduTgNrShOx4oxKdV7t22Oa3MPCu-__KW-LHtEQ/viewform?usp=publish-editor"
+            target="_blank" class="btn btn-primary">Register Now</a>
         </div>
       </div>
     </div>
@@ -424,6 +472,17 @@
     </div>
   </footer>
 
+  <!-- Registration Closed Modal -->
+  <div id="registrationClosedModal" class="modal-overlay">
+    <div class="modal-content">
+      <img src="assets/Pictures/frostbyte no tagline.png" alt="FrostByte" class="modal-logo">
+      <h2 class="modal-title">Registrations Are Now Closed</h2>
+      <p class="modal-message">Thank you so much for participating!</p>
+      <button id="modalCloseBtn" class="btn btn-primary modal-btn">Acknowledge</button>
+    </div>
+  </div>
+
   <script src="js/main.js"></script>
 </body>
+
 </html>

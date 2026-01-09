@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }, { root: null, threshold: 0.3 });
-  
+
   sections.forEach(s => sectionObserver.observe(s));
 
   // Scroll Reveal Animation
@@ -77,14 +77,14 @@ document.addEventListener('DOMContentLoaded', () => {
   (function countdown() {
     const el = document.getElementById('countdown');
     if (!el) return;
-    
+
     // Set to Dec 18, 2025
     const eventDate = new Date('2026-01-09T10:00:00');
 
     function update() {
       const now = new Date();
       let diff = Math.max(0, eventDate - now);
-      
+
       const days = Math.floor(diff / 86400000);
       diff -= days * 86400000;
       const hours = Math.floor(diff / 3600000);
@@ -92,8 +92,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const mins = Math.floor(diff / 60000);
       diff -= mins * 60000;
       const secs = Math.floor(diff / 1000);
-      
-      el.textContent = `${days}d : ${String(hours).padStart(2,'0')}h : ${String(mins).padStart(2,'0')}m : ${String(secs).padStart(2,'0')}s`;
+
+      el.textContent = `${days}d : ${String(hours).padStart(2, '0')}h : ${String(mins).padStart(2, '0')}m : ${String(secs).padStart(2, '0')}s`;
     }
     update();
     setInterval(update, 1000);
@@ -179,45 +179,155 @@ document.addEventListener('DOMContentLoaded', () => {
     animate();
   }
 
-  // Registration Form
+  // --- Registration Logic (Modal + Particles + Glitch) ---
   const registerForm = document.getElementById('registerForm');
+  const modal = document.getElementById('registrationClosedModal');
+  const modalCloseBtn = document.getElementById('modalCloseBtn');
+  const messageDiv = document.getElementById('message');
+
+  // Helper: Create Snow/Confetti Burst
+  function createSnowBurst() {
+    const burstCount = 60;
+    const centerX = window.innerWidth / 2;
+    const centerY = window.innerHeight / 2;
+
+    for (let i = 0; i < burstCount; i++) {
+      const particle = document.createElement('div');
+      particle.classList.add('snow-particle');
+      document.body.appendChild(particle);
+
+      // Random direction and distance
+      const angle = Math.random() * Math.PI * 2;
+      const dist = 50 + Math.random() * 150;
+      const tx = Math.cos(angle) * dist + 'px';
+      const ty = Math.sin(angle) * dist + 'px';
+
+      particle.style.setProperty('--tx', tx);
+      particle.style.setProperty('--ty', ty);
+
+      // Random animation duration
+      particle.style.animation = `snowBurst ${0.8 + Math.random() * 0.5}s ease-out forwards`;
+
+      // Cleanup
+      setTimeout(() => {
+        particle.remove();
+      }, 1500);
+    }
+  }
+
+  // Helper: Show Modal and Handle Callback
+  function showRegistrationModal(onConfirmCallback) {
+    if (!modal) return;
+
+    // 1. Show Modal
+    modal.classList.add('show');
+
+    // 2. Trigger Effects
+    createSnowBurst();
+
+    // Convert to Border Glitch Effect
+    const modalContent = modal.querySelector('.modal-content');
+    if (modalContent) {
+      modalContent.classList.add('glitch-border');
+      modalContent.classList.add('show-effect'); // Trigger opacity
+    }
+
+    // 3. Define Clean-up & Confirm Logic
+    const handleConfirm = () => {
+      modal.classList.remove('show');
+
+      // Stop glitch when closed
+      if (modalContent) {
+        modalContent.classList.remove('glitch-border');
+        modalContent.classList.remove('show-effect');
+      }
+
+      if (typeof onConfirmCallback === 'function') {
+        onConfirmCallback();
+      }
+    };
+
+    // 4. Attach Listeners (One-time use)
+    const oneTimeClose = () => {
+      handleConfirm();
+      modalCloseBtn.removeEventListener('click', oneTimeClose);
+      modal.removeEventListener('click', outsideClick);
+    };
+
+    const outsideClick = (e) => {
+      if (e.target === modal) {
+        oneTimeClose();
+      }
+    };
+
+    if (modalCloseBtn) modalCloseBtn.addEventListener('click', oneTimeClose);
+    modal.addEventListener('click', outsideClick);
+  }
+
+  // A. Handle "Initialize Sequence" Form (register.html)
   if (registerForm) {
-    const messageDiv = document.getElementById('message');
+    registerForm.addEventListener('submit', function (e) {
+      e.preventDefault();
 
-    registerForm.addEventListener('submit', function(e) {
-        e.preventDefault(); // Prevent default HTML form submission
-
-        // Visual feedback that something is happening
+      showRegistrationModal(() => {
+        // Proceed with Form Submission logic
         const btn = registerForm.querySelector('button[type="submit"]');
         const originalText = btn.textContent;
         btn.textContent = "Transmitting Data...";
         btn.disabled = true;
-        messageDiv.textContent = "";
+        if (messageDiv) messageDiv.textContent = "";
 
         const formData = new FormData(registerForm);
 
         fetch(registerForm.action, {
-            method: 'POST',
-            body: formData
+          method: 'POST',
+          body: formData
         })
-        .then(response => response.text())
-        .then(text => {
-            messageDiv.textContent = "Registration Successful! Welcome to the system.";
-            messageDiv.style.color = "#22d3ee"; // Cyan accent color
+          .then(response => response.text())
+          .then(text => {
+            if (messageDiv) {
+              messageDiv.textContent = "Registration Successful! Welcome to the system.";
+              messageDiv.style.color = "#22d3ee"; // Cyan
+            }
             registerForm.reset();
-        })
-        .catch(error => {
-            messageDiv.textContent = "Connection Error. Please try again.";
-            messageDiv.style.color = "#ef4444"; // Red error color
+          })
+          .catch(error => {
+            if (messageDiv) {
+              messageDiv.textContent = "Connection Error. Please try again.";
+              messageDiv.style.color = "#ef4444"; // Red
+            }
             console.error(error);
-        })
-        .finally(() => {
-            // Restore button state
+          })
+          .finally(() => {
             btn.textContent = originalText;
             btn.disabled = false;
-        });
+          });
+      });
     });
   }
+
+  // B. Handle "Register" Links (index.html & Navbar)
+  const registerLinks = document.querySelectorAll('a[href*="docs.google.com/forms"], a[href*="register.html"]'); // Broad capture
+  // Note: register.html itself might have links to register.html, avoid recursion loops if necessary.
+
+  registerLinks.forEach(link => {
+    // Only intercept if it points to Google Forms OR if we want to intercept the internal navigation to register.html
+    // User asked: "when I click the Register button... pop up... Do NOT remove google forms redirection"
+    // The nav link to register.html just goes to the page. The modal should appear when clicking the "Button" to submit/register.
+    // BUT on index.html, the Register button goes to Google Forms. So we intercept THAT.
+
+    if (link.href.includes("docs.google.com/forms")) {
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetUrl = this.href;
+        const targetWindow = this.target || '_self';
+
+        showRegistrationModal(() => {
+          window.open(targetUrl, targetWindow);
+        });
+      });
+    }
+  });
 
   const curtainOverlay = document.getElementById('curtain-overlay');
   if (curtainOverlay) {
